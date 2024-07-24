@@ -30,7 +30,7 @@ const variantStyles = {
   bodySmall: css<TextProps>`
     font-size: ${({theme, size}) => theme.typography.fontSize[size || 'sm']}px;
     font-weight: ${({theme, weight}) =>
-      theme.typography.fontWeight[weight || 'normal']};
+      theme.typography.fontWeight[weight || 'light']};
   `,
   bodyLarge: css<TextProps>`
     font-size: ${({theme, size}) => theme.typography.fontSize[size || 'lg']}px;
