@@ -8,7 +8,7 @@ type ContainerProps = StatusBarProps & {
 
 const StyledContainer = styled.SafeAreaView`
   flex: 1;
-  background-color: ${({theme}) => theme.colors.background};
+  background-color: ${({theme}) => theme.colors.primary.darker};
   padding-horizontal: ${({theme}) => theme.spacing.medium}px;
 `;
 
@@ -20,7 +20,7 @@ const Container = ({children, ...props}: ContainerProps) => {
       <StatusBar
         barStyle={props.translucent ? 'light-content' : 'dark-content'}
         backgroundColor={
-          props.translucent ? colors.backdrop : colors.background
+          props.translucent ? colors.backdrop : colors.primary.darker
         }
         animated
         {...props}
