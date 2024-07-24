@@ -1,9 +1,8 @@
 import React from 'react';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const App = () => {
-  return (
-    <div>
-      <h1>Hello Z1!!</h1>
-    </div>
-  );
+  return <SafeAreaView></SafeAreaView>;
 };
+
+export default App;
