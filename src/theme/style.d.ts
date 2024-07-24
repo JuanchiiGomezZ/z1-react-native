@@ -15,9 +15,10 @@ declare module 'styled-components/native' {
       backdrop: string;
     };
     spacing: {
-      small: number;
-      medium: number;
-      large: number;
+      xs: number;
+      sm: number;
+      md: number;
+      lg: number;
     };
     typography: {
       fontSize: {
@@ -30,11 +31,18 @@ declare module 'styled-components/native' {
         xxxl: number;
       };
       fontWeight: {
+        light: string;
         normal: string;
         medium: string;
         semiBold: string;
         bold: string;
       };
+    };
+    borderRadius: {
+      sm: number;
+      md: number;
+      lg: number;
+      full: number;
     };
   }
 }

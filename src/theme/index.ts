@@ -14,9 +14,10 @@ const theme: DefaultTheme = {
     backdrop: 'rgba(0, 0, 0, 0.5)',
   },
   spacing: {
-    small: 8,
-    medium: 16,
-    large: 24,
+    xs: 4,
+    sm: 8,
+    md: 16,
+    lg: 24,
   },
   typography: {
     fontSize: {
@@ -29,11 +30,18 @@ const theme: DefaultTheme = {
       xxxl: 32,
     },
     fontWeight: {
+      light: '300',
       normal: '400',
       medium: '500',
       semiBold: '600',
       bold: '700',
     },
+  },
+  borderRadius: {
+    sm: 8,
+    md: 12,
+    lg: 16,
+    full: 9999,
   },
 };
 
