@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {memo} from 'react';
 import styled, {useTheme} from 'styled-components/native';
 import Text from '../Text';
 import {Item} from '../../graphql/types';
 import {SCREEN_WIDTH} from '../../utils';
-import theme from '../../theme';
 
 const CardContainer = styled.Pressable`
-  width: ${({theme}) => SCREEN_WIDTH / 2 - theme.spacing.md - 5}px;
+  width: ${({theme}) =>
+    SCREEN_WIDTH / 2 - theme.spacing.lg - theme.spacing.md / 2}px;
   border-radius: ${({theme}) => theme.borderRadius.lg}px;
   background-color: ${({theme}) => theme.colors.primary.default};
 `;
@@ -17,14 +17,12 @@ const CardImage = styled.Image`
 `;
 
 const CardContent = styled.View`
-  padding: ${({theme}) => theme.spacing.sm}px;
+  padding-horizontal: ${({theme}) => theme.spacing.md}px;
+  padding-vertical: ${({theme}) => theme.spacing.sm}px;
   gap: ${({theme}) => theme.spacing.sm}px;
-  flex-grow: 1;
-  flex-direction: column;
-  justify-content: space-between;
 `;
 
-const ItemCard = ({id, image, title, category, author}: Item) => {
+const ItemCard = memo(({id, image, title, category, author}: Item) => {
   const {colors} = useTheme();
   return (
     <CardContainer>
@@ -45,6 +43,6 @@ const ItemCard = ({id, image, title, category, author}: Item) => {
       </CardContent>
     </CardContainer>
   );
-};
+});
 
 export default ItemCard;

@@ -1,23 +1,33 @@
-import React from 'react';
-import {View, FlatList} from 'react-native';
-import {GetItemsData} from '../../graphql/types';
-import Text from '../Text';
+import React, {useCallback} from 'react';
+import {FlatList} from 'react-native';
+import {GetItemsData, Item} from '../../graphql/types';
 import ItemCard from './ItemCard';
+import {useTheme} from 'styled-components/native';
 
 const ItemsList = ({items}: GetItemsData) => {
+  const {spacing} = useTheme();
+
+  const renderItem = useCallback(
+    ({item}: {item: Item}) => <ItemCard {...item} />,
+    [],
+  );
   return (
     <FlatList
       data={items}
-      keyExtractor={item => item.id}
-      renderItem={({item}) => <ItemCard {...item} />}
+      keyExtractor={(item: Item) => item.id}
+      renderItem={renderItem}
       numColumns={2}
       contentContainerStyle={{
-        paddingBottom: 20,
-        gap: 10,
+        gap: spacing.md,
       }}
       columnWrapperStyle={{
-        gap: 10,
+        gap: spacing.md,
       }}
+      maxToRenderPerBatch={10}
+      initialNumToRender={10}
+      windowSize={6}
+      removeClippedSubviews={true}
+      showsVerticalScrollIndicator={false}
     />
   );
 };
