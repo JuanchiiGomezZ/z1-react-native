@@ -1,9 +1,9 @@
 import React from 'react';
-import {Text} from 'react-native';
 import {useItems} from '../../hooks/useItems';
 import Loader from '../../components/Loader';
 import ItemsList from '../../components/Items/ItemsList';
 import Container from '../../components/Container';
+import Text from '../../components/Text';
 
 const Home = () => {
   const {items, loading, error} = useItems();

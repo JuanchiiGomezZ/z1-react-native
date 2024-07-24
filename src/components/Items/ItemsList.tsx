@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, FlatList} from 'react-native';
 import {GetItemsData} from '../../graphql/types';
+import Text from '../Text';
 
 const ItemsList = ({items}: GetItemsData) => {
   return (
@@ -9,10 +10,11 @@ const ItemsList = ({items}: GetItemsData) => {
       keyExtractor={item => item.id}
       renderItem={({item}) => (
         <View>
-          <Text>{item.title}</Text>
-          <Text>{item.author}</Text>
+          <Text variant="title">{item.title}</Text>
+          <Text variant="body">{item.author}</Text>
         </View>
       )}
+      numColumns={2}
       contentContainerStyle={{paddingBottom: 20, gap: 10}}
     />
   );
