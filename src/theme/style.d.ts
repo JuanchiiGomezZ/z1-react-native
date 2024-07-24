@@ -11,8 +11,8 @@ declare module 'styled-components/native' {
         darker: string;
       };
       secondary: string;
-      backdrop: string;
       text: string;
+      backdrop: string;
     };
     spacing: {
       small: number;
@@ -20,13 +20,20 @@ declare module 'styled-components/native' {
       large: number;
     };
     typography: {
-      header: {
-        fontSize: number;
-        fontWeight: string;
+      fontSize: {
+        xs: number;
+        sm: number;
+        md: number;
+        lg: number;
+        xl: number;
+        xxl: number;
+        xxxl: number;
       };
-      body: {
-        fontSize: number;
-        fontWeight: string;
+      fontWeight: {
+        normal: string;
+        medium: string;
+        semiBold: string;
+        bold: string;
       };
     };
   }
