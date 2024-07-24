@@ -1,17 +1,21 @@
 import React from 'react';
 import {ActivityIndicator, View} from 'react-native';
+import Container from '../Container';
+import styled, {useTheme} from 'styled-components/native';
+
+const StyledContainer = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background-color: ${({theme}) => theme.colors.primary.darker};
+`;
 
 const Loader = () => {
+  const {colors} = useTheme();
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'red',
-      }}>
-      <ActivityIndicator size="large" color="#0000ff" />
-    </View>
+    <StyledContainer>
+      <ActivityIndicator size="large" color={colors.text} />
+    </StyledContainer>
   );
 };
 export default Loader;
