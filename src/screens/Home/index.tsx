@@ -1,8 +1,9 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {Text} from 'react-native';
 import {useItems} from '../../hooks/useItems';
 import Loader from '../../components/Loader';
 import ItemsList from '../../components/Items/ItemsList';
+import Container from '../../components/Container';
 
 const Home = () => {
   const {items, loading, error} = useItems();
@@ -10,9 +11,9 @@ const Home = () => {
   if (loading) return <Loader />;
   if (error) return <Text>Error: {error.message}</Text>;
   return (
-    <View style={{flex: 1, paddingHorizontal: 5}}>
+    <Container>
       <ItemsList items={items} />
-    </View>
+    </Container>
   );
 };
 
