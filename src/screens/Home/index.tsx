@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {useItems} from '../../hooks/useItems';
 import Loader from '../../components/Loader';
 import ItemsList from '../../components/Items/ItemsList';
@@ -8,13 +8,26 @@ import Filters from '../../components/Filters';
 import {FILTER_DATA} from '../../assets/data';
 
 const Home = () => {
-  const {items, loading, error} = useItems();
+  const [activeFilter, setActiveFilter] = useState<string>('');
+  const {items, loading, error} = useItems(activeFilter);
+
+  const handleFilterChange = useCallback((id: string) => {
+    if (id === activeFilter) {
+      setActiveFilter('');
+      return;
+    }
+    setActiveFilter(id);
+  }, []);
 
   if (loading) return <Loader />;
   if (error) return <Text>Error: {error.message}</Text>;
   return (
     <Container>
-      <Filters data={FILTER_DATA} />
+      <Filters
+        data={FILTER_DATA}
+        activeFilter={activeFilter}
+        onFilterChange={handleFilterChange}
+      />
       <ItemsList items={items} />
     </Container>
   );
