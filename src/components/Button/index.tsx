@@ -4,13 +4,9 @@ import styled, {css, DefaultTheme} from 'styled-components/native';
 import Text from '../Text';
 
 type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'text';
-type ButtonSize = 'small' | 'medium' | 'large';
 
 interface ButtonProps {
   variant?: ButtonVariant;
-  size?: ButtonSize;
-  fullWidth?: boolean;
-  disabled?: boolean;
   loading?: boolean;
   onPress: () => void;
   children: React.ReactNode;
@@ -20,7 +16,7 @@ const getButtonStyles = (theme: DefaultTheme, variant: ButtonVariant) => {
   switch (variant) {
     case 'primary':
       return css`
-        background-color: ${theme.colors.primary.default};
+        background-color: ${theme.colors.primary.dark};
         border: none;
       `;
     case 'secondary':
@@ -43,34 +39,14 @@ const getButtonStyles = (theme: DefaultTheme, variant: ButtonVariant) => {
   }
 };
 
-const getButtonSize = (theme: DefaultTheme, size: ButtonSize) => {
-  switch (size) {
-    case 'small':
-      return css`
-        padding: ${theme.spacing.xs}px ${theme.spacing.sm}px;
-      `;
-    case 'medium':
-      return css`
-        padding: ${theme.spacing.sm}px ${theme.spacing.md}px;
-      `;
-    case 'large':
-      return css`
-        padding: ${theme.spacing.md}px ${theme.spacing.lg}px;
-      `;
-    default:
-      return '';
-  }
-};
-
 const StyledButton = styled(TouchableOpacity)<ButtonProps>`
-  ${({theme, variant = 'primary', size = 'medium', fullWidth, disabled}) => css`
+  ${({theme, variant = 'primary'}) => css`
     ${getButtonStyles(theme, variant)}
-    ${getButtonSize(theme, size)}
+    height: 40px;
+    padding-horizontal: ${theme.spacing.lg}px;
     border-radius: ${theme.borderRadius.md}px;
     align-items: center;
     justify-content: center;
-    opacity: ${disabled ? 0.5 : 1};
-    ${fullWidth && 'width: 100%;'}
   `}
 `;
 
@@ -79,7 +55,7 @@ const ButtonText = styled(Text)<{variant: ButtonVariant}>`
     color: ${variant === 'outline' || variant === 'text'
       ? theme.colors.primary.default
       : theme.colors.text};
-    font-weight: ${theme.typography.fontWeight.semiBold};
+    font-weight: ${theme.typography.fontWeight.bold};
     font-size: ${theme.typography.fontSize.xl}px;
   `}
 `;
@@ -87,20 +63,12 @@ const ButtonText = styled(Text)<{variant: ButtonVariant}>`
 // Componente
 const Button = ({
   variant = 'primary',
-  size = 'medium',
-  fullWidth = false,
-  disabled = false,
   loading = false,
   onPress,
   children,
 }: ButtonProps) => {
   return (
-    <StyledButton
-      variant={variant}
-      size={size}
-      fullWidth={fullWidth}
-      disabled={disabled || loading}
-      onPress={onPress}>
+    <StyledButton variant={variant} onPress={onPress}>
       {loading ? (
         <ActivityIndicator
           color={
@@ -108,11 +76,7 @@ const Button = ({
           }
         />
       ) : (
-        <ButtonText
-          variant={variant}
-          size={size === 'small' ? 'sm' : size === 'large' ? 'lg' : 'md'}>
-          {children}
-        </ButtonText>
+        <ButtonText variant={variant}>{children}</ButtonText>
       )}
     </StyledButton>
   );
