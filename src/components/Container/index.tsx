@@ -10,21 +10,24 @@ const StyledContainer = styled.SafeAreaView`
   flex: 1;
   background-color: ${({theme}) => theme.colors.primary.darker};
 `;
-
+const StyledView = styled.View`
+  flex: 1;
+  margin-top: ${StatusBar.currentHeight}px;
+`;
 const Container = ({children, ...props}: ContainerProps) => {
   const {colors} = useTheme();
 
   return (
     <StyledContainer>
       <StatusBar
-        barStyle={props.translucent ? 'light-content' : 'dark-content'}
+        barStyle="light-content"
         backgroundColor={
           props.translucent ? colors.backdrop : colors.primary.darker
         }
         animated
         {...props}
       />
-      {children}
+      <StyledView>{children}</StyledView>
     </StyledContainer>
   );
 };
