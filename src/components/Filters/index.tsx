@@ -23,7 +23,8 @@ const Filters = ({data}: FiltersProps) => {
       )}
       contentContainerStyle={{
         marginLeft: spacing.lg,
-        paddingVertical: spacing.md,
+        paddingVertical: spacing.lg,
+        paddingRight: spacing.xl,
         gap: spacing.sm,
       }}
     />
