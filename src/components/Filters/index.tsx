@@ -3,14 +3,21 @@ import {FlatList} from 'react-native';
 import {useTheme} from 'styled-components/native';
 import Button from '../Button';
 import {Category} from '../../graphql/types';
+import FiltersSkeleton from './FiltersSkeleton';
 
 type FiltersProps = {
   data: Category[];
   activeFilter: string | null;
   onFilterChange: (id: string) => void;
+  isLoading?: boolean;
 };
 
-const Filters = ({data, activeFilter, onFilterChange}: FiltersProps) => {
+const Filters = ({
+  data,
+  activeFilter,
+  onFilterChange,
+  isLoading,
+}: FiltersProps) => {
   const {spacing} = useTheme();
 
   const renderItem = useCallback(
@@ -23,6 +30,10 @@ const Filters = ({data, activeFilter, onFilterChange}: FiltersProps) => {
     ),
     [activeFilter, onFilterChange],
   );
+
+  if (isLoading) {
+    return <FiltersSkeleton numOfElements={6} />;
+  }
   return (
     <FlatList
       data={data}

@@ -30,6 +30,7 @@ const Home = () => {
         data={FILTER_DATA}
         activeFilter={activeFilter}
         onFilterChange={handleFilterChange}
+        isLoading={loading}
       />
       <ItemsList items={items} />
     </Container>

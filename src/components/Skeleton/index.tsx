@@ -30,8 +30,8 @@ const Skeleton = ({
   useEffect(() => {
     opacity.value = withRepeat(
       withTiming(1, {duration: animationDuration}),
-      -1, // Repeat twice (0 to 1 and then 1 to 0)
-      true, // Reverse the animation
+      -1,
+      true,
     );
   }, [animationDuration, opacity]);
 
@@ -44,8 +44,8 @@ const Skeleton = ({
   });
 
   return (
-    <Animated.View style={[skeletonStyle]} entering={FadeIn}>
-      {children}
+    <Animated.View entering={FadeIn}>
+      <Animated.View style={skeletonStyle}>{children}</Animated.View>
     </Animated.View>
   );
 };
