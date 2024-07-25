@@ -22,7 +22,6 @@ const Home = () => {
     [activeFilter],
   );
 
-  if (loading) return <Loader />;
   if (error) return <Text>Error: {error.message}</Text>;
   return (
     <Container>
@@ -32,7 +31,7 @@ const Home = () => {
         onFilterChange={handleFilterChange}
         isLoading={loading}
       />
-      <ItemsList items={items} />
+      <ItemsList items={items} isLoading={loading} />
     </Container>
   );
 };

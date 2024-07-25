@@ -3,14 +3,23 @@ import {FlatList} from 'react-native';
 import {GetItemsData, Item} from '../../graphql/types';
 import ItemCard from './ItemCard';
 import {useTheme} from 'styled-components/native';
+import ItemsListSkeleton from './ItemsListSkeleton';
 
-const ItemsList = ({items}: GetItemsData) => {
+type ItemsListProps = {
+  items: Item[];
+  isLoading?: boolean;
+};
+const ItemsList = ({items, isLoading}: ItemsListProps) => {
   const {spacing} = useTheme();
 
   const renderItem = useCallback(
     ({item}: {item: Item}) => <ItemCard {...item} />,
     [],
   );
+
+  if (isLoading) {
+    return <ItemsListSkeleton numOfElements={6} />;
+  }
   return (
     <FlatList
       data={items}
