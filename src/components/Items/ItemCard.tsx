@@ -3,12 +3,13 @@ import styled, {useTheme} from 'styled-components/native';
 import Text from '../Text';
 import {Item} from '../../graphql/types';
 import {SCREEN_WIDTH} from '../../utils';
+import {Pressable} from 'react-native';
+import Animated, {FadeIn, FadeOut} from 'react-native-reanimated';
 
-const CardContainer = styled.Pressable`
-  width: ${({theme}) =>
-    SCREEN_WIDTH / 2 - theme.spacing.lg - theme.spacing.md / 2}px;
-  border-radius: ${({theme}) => theme.borderRadius.lg}px;
-  background-color: ${({theme}) => theme.colors.primary.default};
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+
+const CardContainer = styled.View`
+  width: 100%;
 `;
 
 const CardImage = styled.Image`
@@ -23,25 +24,32 @@ const CardContent = styled.View`
 `;
 
 const ItemCard = memo(({id, image, title, category, author}: Item) => {
-  const {colors} = useTheme();
+  const {colors, borderRadius} = useTheme();
   return (
-    <CardContainer>
-      <CardImage
-        source={{
-          uri: image,
-        }}
-      />
-      <CardContent>
-        <Text variant="bodyLarge" color={colors.secondary}>
-          {category.title}
-        </Text>
-        <Text variant="title">
-          {title}
-        </Text>
-        <Text variant="bodySmall">{author}</Text>
-        <CardContent />
-      </CardContent>
-    </CardContainer>
+    <AnimatedPressable
+      entering={FadeIn}
+      exiting={FadeOut}
+      style={{
+        flex: 1,
+        backgroundColor: colors.primary.default,
+        borderRadius: borderRadius.md,
+      }}>
+      <CardContainer>
+        <CardImage
+          source={{
+            uri: image,
+          }}
+        />
+        <CardContent>
+          <Text variant="bodyLarge" color={colors.secondary}>
+            {category.title}
+          </Text>
+          <Text variant="title">{title}</Text>
+          <Text variant="bodySmall">{author}</Text>
+          <CardContent />
+        </CardContent>
+      </CardContainer>
+    </AnimatedPressable>
   );
 });
 
