@@ -35,7 +35,7 @@ const ItemCard = memo(({id, image, title, category, author}: Item) => {
         <Text variant="bodyLarge" color={colors.secondary}>
           {category.title}
         </Text>
-        <Text variant="title" weight="bold">
+        <Text variant="title">
           {title}
         </Text>
         <Text variant="bodySmall">{author}</Text>

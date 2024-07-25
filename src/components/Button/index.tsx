@@ -65,8 +65,8 @@ const ButtonText = styled(Text)<{variant: ButtonVariant}>`
     color: ${variant === 'outline' || variant === 'disabled'
       ? theme.colors.primary.default
       : theme.colors.text};
-    font-weight: ${theme.typography.fontWeight.bold};
     font-size: ${theme.typography.fontSize.xl}px;
+    font-family: ${theme.typography.fontFamily.semiBold};
   `}
 `;
 

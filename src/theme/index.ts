@@ -29,12 +29,13 @@ const theme: DefaultTheme = {
       xxl: 24,
       xxxl: 32,
     },
-    fontWeight: {
-      light: '300',
-      normal: '400',
-      medium: '500',
-      semiBold: '600',
-      bold: '700',
+    fontFamily: {
+      light: 'Poppins-Light',
+      regular: 'Poppins-Regular',
+      medium: 'Poppins-Medium',
+      semiBold: 'Poppins-SemiBold',
+      bold: 'Poppins-Bold',
+      black: 'Poppins-Black',
     },
   },
   borderRadius: {

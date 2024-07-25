@@ -1,7 +1,6 @@
 import styled, {css, DefaultTheme} from 'styled-components/native';
 
 type FontSizeKeys = keyof DefaultTheme['typography']['fontSize'];
-type FontWeightKeys = keyof DefaultTheme['typography']['fontWeight'];
 
 interface TextProps {
   variant?:
@@ -13,7 +12,6 @@ interface TextProps {
     | 'subtitle';
   color?: string;
   size?: FontSizeKeys;
-  weight?: FontWeightKeys;
   align?: 'left' | 'center' | 'right';
 }
 const baseStyle = css<TextProps>`
@@ -24,33 +22,27 @@ const baseStyle = css<TextProps>`
 const variantStyles = {
   body: css<TextProps>`
     font-size: ${({theme, size}) => theme.typography.fontSize[size || 'md']}px;
-    font-weight: ${({theme, weight}) =>
-      theme.typography.fontWeight[weight || 'normal']};
+    font-family: ${({theme}) => theme.typography.fontFamily.regular};
   `,
   bodySmall: css<TextProps>`
     font-size: ${({theme, size}) => theme.typography.fontSize[size || 'sm']}px;
-    font-weight: ${({theme, weight}) =>
-      theme.typography.fontWeight[weight || 'light']};
+    font-family: ${({theme}) => theme.typography.fontFamily.light};
   `,
   bodyLarge: css<TextProps>`
     font-size: ${({theme, size}) => theme.typography.fontSize[size || 'lg']}px;
-    font-weight: ${({theme, weight}) =>
-      theme.typography.fontWeight[weight || 'normal']};
+    font-family: ${({theme}) => theme.typography.fontFamily.medium};
   `,
   header: css<TextProps>`
     font-size: ${({theme, size}) => theme.typography.fontSize[size || 'xxl']}px;
-    font-weight: ${({theme, weight}) =>
-      theme.typography.fontWeight[weight || 'bold']};
+    font-family: ${({theme}) => theme.typography.fontFamily.black};
   `,
   title: css<TextProps>`
     font-size: ${({theme, size}) => theme.typography.fontSize[size || 'xl']}px;
-    font-weight: ${({theme, weight}) =>
-      theme.typography.fontWeight[weight || 'semiBold']};
+    font-family: ${({theme}) => theme.typography.fontFamily.bold};
   `,
   subtitle: css<TextProps>`
     font-size: ${({theme, size}) => theme.typography.fontSize[size || 'lg']}px;
-    font-weight: ${({theme, weight}) =>
-      theme.typography.fontWeight[weight || 'medium']};
+    font-family: ${({theme}) => theme.typography.fontFamily.medium};
   `,
 };
 

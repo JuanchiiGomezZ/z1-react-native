@@ -30,12 +30,13 @@ declare module 'styled-components/native' {
         xxl: number;
         xxxl: number;
       };
-      fontWeight: {
+      fontFamily: {
         light: string;
-        normal: string;
+        regular: string;
         medium: string;
         semiBold: string;
         bold: string;
+        black: string;
       };
     };
     borderRadius: {
