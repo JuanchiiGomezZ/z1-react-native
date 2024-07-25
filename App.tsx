@@ -1,8 +1,5 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
-
 import MainNavigation from './src/navigation/MainNavigation';
-
 import {client, ApolloProvider} from './src/apollo/client';
 import {ThemeProvider} from 'styled-components';
 import theme from './src/theme';
