@@ -11,13 +11,16 @@ const Home = () => {
   const [activeFilter, setActiveFilter] = useState<string>('');
   const {items, loading, error} = useItems(activeFilter);
 
-  const handleFilterChange = useCallback((id: string) => {
-    if (id === activeFilter) {
-      setActiveFilter('');
-      return;
-    }
-    setActiveFilter(id);
-  }, []);
+  const handleFilterChange = useCallback(
+    (id: string) => {
+      if (id === activeFilter) {
+        setActiveFilter('');
+        return;
+      }
+      setActiveFilter(id);
+    },
+    [activeFilter],
+  );
 
   if (loading) return <Loader />;
   if (error) return <Text>Error: {error.message}</Text>;
