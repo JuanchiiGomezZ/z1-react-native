@@ -9,7 +9,6 @@ type ContainerProps = StatusBarProps & {
 const StyledContainer = styled.SafeAreaView`
   flex: 1;
   background-color: ${({theme}) => theme.colors.primary.darker};
-  padding-horizontal: ${({theme}) => theme.spacing.lg}px;
 `;
 
 const Container = ({children, ...props}: ContainerProps) => {

@@ -3,7 +3,12 @@ import {TouchableOpacity, ActivityIndicator} from 'react-native';
 import styled, {css, DefaultTheme} from 'styled-components/native';
 import Text from '../Text';
 
-type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'text';
+type ButtonVariant =
+  | 'primary'
+  | 'secondary'
+  | 'outline'
+  | 'primary-focus'
+  | 'disabled';
 
 interface ButtonProps {
   variant?: ButtonVariant;
@@ -29,9 +34,14 @@ const getButtonStyles = (theme: DefaultTheme, variant: ButtonVariant) => {
         background-color: transparent;
         border: 1px solid ${theme.colors.primary.default};
       `;
-    case 'text':
+    case 'primary-focus':
       return css`
-        background-color: transparent;
+        background-color: ${theme.colors.primary.light};
+        border: none;
+      `;
+    case 'disabled':
+      return css`
+        background-color: ${theme.colors.primary.darker};
         border: none;
       `;
     default:
@@ -52,7 +62,7 @@ const StyledButton = styled(TouchableOpacity)<ButtonProps>`
 
 const ButtonText = styled(Text)<{variant: ButtonVariant}>`
   ${({theme, variant}) => css`
-    color: ${variant === 'outline' || variant === 'text'
+    color: ${variant === 'outline' || variant === 'disabled'
       ? theme.colors.primary.default
       : theme.colors.text};
     font-weight: ${theme.typography.fontWeight.bold};
@@ -71,9 +81,7 @@ const Button = ({
     <StyledButton variant={variant} onPress={onPress}>
       {loading ? (
         <ActivityIndicator
-          color={
-            variant === 'outline' || variant === 'text' ? 'primary' : 'white'
-          }
+          color={variant === 'outline' ? 'primary' : 'white'}
         />
       ) : (
         <ButtonText variant={variant}>{children}</ButtonText>

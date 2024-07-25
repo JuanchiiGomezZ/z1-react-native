@@ -19,6 +19,7 @@ const ItemsList = ({items}: GetItemsData) => {
       numColumns={2}
       contentContainerStyle={{
         gap: spacing.md,
+        paddingHorizontal: spacing.lg,
       }}
       columnWrapperStyle={{
         gap: spacing.md,
