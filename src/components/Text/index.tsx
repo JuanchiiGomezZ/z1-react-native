@@ -33,7 +33,7 @@ const variantStyles = {
     font-family: ${({theme}) => theme.typography.fontFamily.medium};
   `,
   header: css<TextProps>`
-    font-size: ${({theme, size}) => theme.typography.fontSize[size || 'xxl']}px;
+    font-size: ${({theme, size}) => theme.typography.fontSize[size || 'xxxl']}px;
     font-family: ${({theme}) => theme.typography.fontFamily.black};
   `,
   title: css<TextProps>`
