@@ -43,7 +43,8 @@ const Filters = ({
       renderItem={renderItem}
       contentContainerStyle={{
         marginLeft: spacing.lg,
-        paddingVertical: spacing.lg,
+        paddingBottom: spacing.xl,
+        paddingTop: spacing.md,
         paddingRight: spacing.xl,
         gap: spacing.sm,
       }}
