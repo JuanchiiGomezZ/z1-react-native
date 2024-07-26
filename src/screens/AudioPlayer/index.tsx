@@ -30,8 +30,8 @@ const StyledImage = styled.Image`
 
 const CloseContainer = styled.View`
   position: absolute;
-  top: 15px;
-  left: 15px;
+  top: ${({theme}) => theme.spacing.md}px;
+  left: ${({theme}) => theme.spacing.lg}px;
 `;
 
 export type AudioPlayerProps = Partial<Item> & {
