@@ -25,7 +25,7 @@ const Home = () => {
   if (error) return <Text>Error: {error.message}</Text>;
   return (
     <Container>
-      <ScreenTitle title="Home" />
+      <ScreenTitle title="Learn" />
       <Filters
         data={FILTER_DATA}
         activeFilter={activeFilter}
