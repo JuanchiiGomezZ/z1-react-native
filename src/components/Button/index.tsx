@@ -13,7 +13,7 @@ type ButtonVariant =
 interface ButtonProps {
   variant?: ButtonVariant;
   loading?: boolean;
-  onPress: () => void;
+  onPress?: () => void;
   label: string;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
