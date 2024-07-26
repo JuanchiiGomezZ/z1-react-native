@@ -1,59 +1,92 @@
 import {useState, useEffect, useCallback} from 'react';
-import TrackPlayer, {Progress, useProgress} from 'react-native-track-player';
+import TrackPlayer, {
+  Event,
+  Progress,
+  useProgress,
+} from 'react-native-track-player';
 
-interface UseTrackPlayer {
+type UseAudioPlayer = {
   isPlaying: boolean;
   togglePlayback: () => Promise<void>;
   seekForward: (seconds: number) => Promise<void>;
   seekBackward: (seconds: number) => Promise<void>;
   progress: Progress;
-}
+};
 
-type useTrackPlayerProps = {
+type UseAudioPlayerProps = {
   audioUrl: string;
 };
 
-const useTrackPlayer = ({audioUrl}: useTrackPlayerProps): UseTrackPlayer => {
+const useAudioPlayer = ({audioUrl}: UseAudioPlayerProps): UseAudioPlayer => {
   const [isPlaying, setIsPlaying] = useState(false);
   const progress = useProgress();
+
   useEffect(() => {
-    const addTrack = async () => {
-      await TrackPlayer.add({
-        id: 'trackId',
-        url: audioUrl,
-        title: 'Track Title',
-        artist: 'Track Artist',
-      });
+    const setupTrack = async () => {
+      try {
+        await TrackPlayer.add({
+          id: 'trackId',
+          url: audioUrl,
+          title: 'Track Title',
+          artist: 'Track Artist',
+        });
+
+        // Configurar el evento para cuando termine la pista
+        await TrackPlayer.addEventListener(
+          Event.PlaybackQueueEnded,
+          async () => {
+            await TrackPlayer.seekTo(0);
+            setIsPlaying(false);
+          },
+        );
+      } catch (error) {
+        console.error('Error setting up track:', error);
+      }
     };
 
-    addTrack();
-  }, []);
+    setupTrack();
+
+    return () => {
+      TrackPlayer.reset();
+    };
+  }, [audioUrl]);
 
   const togglePlayback = useCallback(async () => {
-    const currentTrack = await TrackPlayer.getActiveTrackIndex();
-    if (currentTrack === null) {
-      await TrackPlayer.play();
-      setIsPlaying(true);
-    } else {
-      if (isPlaying) {
-        await TrackPlayer.pause();
-        setIsPlaying(false);
-      } else {
+    try {
+      const currentTrack = await TrackPlayer.getActiveTrackIndex();
+      if (currentTrack === null) {
         await TrackPlayer.play();
         setIsPlaying(true);
+      } else {
+        if (isPlaying) {
+          await TrackPlayer.pause();
+        } else {
+          await TrackPlayer.play();
+        }
+        setIsPlaying(!isPlaying);
       }
+    } catch (error) {
+      console.error('Error toggling playback:', error);
     }
   }, [isPlaying]);
 
-  const seekForward = useCallback(async (seconds: number) => {
-    const position = await TrackPlayer.getProgress();
-    await TrackPlayer.seekTo(position.position + seconds);
+  const seekTo = useCallback(async (seconds: number) => {
+    try {
+      const position = await TrackPlayer.getPosition();
+      await TrackPlayer.seekTo(position + seconds);
+    } catch (error) {
+      console.error('Error seeking:', error);
+    }
   }, []);
 
-  const seekBackward = useCallback(async (seconds: number) => {
-    const position = await TrackPlayer.getProgress();
-    await TrackPlayer.seekTo(position.position - seconds);
-  }, []);
+  const seekForward = useCallback(
+    (seconds: number) => seekTo(seconds),
+    [seekTo],
+  );
+  const seekBackward = useCallback(
+    (seconds: number) => seekTo(-seconds),
+    [seekTo],
+  );
 
   return {
     isPlaying,
@@ -64,4 +97,4 @@ const useTrackPlayer = ({audioUrl}: useTrackPlayerProps): UseTrackPlayer => {
   };
 };
 
-export default useTrackPlayer;
+export default useAudioPlayer;
