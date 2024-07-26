@@ -9,7 +9,8 @@ interface TextProps {
     | 'bodyLarge'
     | 'header'
     | 'title'
-    | 'subtitle';
+    | 'subtitle'
+    | 'category';
   color?: string;
   size?: FontSizeKeys;
   align?: 'left' | 'center' | 'right';
@@ -33,7 +34,8 @@ const variantStyles = {
     font-family: ${({theme}) => theme.typography.fontFamily.medium};
   `,
   header: css<TextProps>`
-    font-size: ${({theme, size}) => theme.typography.fontSize[size || 'xxxl']}px;
+    font-size: ${({theme, size}) =>
+      theme.typography.fontSize[size || 'xxxl']}px;
     font-family: ${({theme}) => theme.typography.fontFamily.black};
   `,
   title: css<TextProps>`
@@ -43,6 +45,12 @@ const variantStyles = {
   subtitle: css<TextProps>`
     font-size: ${({theme, size}) => theme.typography.fontSize[size || 'lg']}px;
     font-family: ${({theme}) => theme.typography.fontFamily.medium};
+  `,
+  category: css<TextProps>`
+    font-size: ${({theme, size}) => theme.typography.fontSize[size || 'md']}px;
+    font-family: ${({theme}) => theme.typography.fontFamily.semiBold};
+    text-transform: uppercase;
+    color: ${({theme}) => theme.colors.secondary};
   `,
 };
 

@@ -5,7 +5,7 @@ import Container from '../../components/Container';
 import Text from '../../components/Text';
 import Filters from '../../components/Filters';
 import {FILTER_DATA} from '../../assets/data';
-import ScreenTitle from '../../components/ScreenTitle';
+
 
 const Home = () => {
   const [activeFilter, setActiveFilter] = useState<string>('');
@@ -25,7 +25,9 @@ const Home = () => {
   if (error) return <Text>Error: {error.message}</Text>;
   return (
     <Container>
-      <ScreenTitle title="Learn" />
+      <Text variant="header" align="center">
+        Learn
+      </Text>
       <Filters
         data={FILTER_DATA}
         activeFilter={activeFilter}
