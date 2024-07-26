@@ -89,8 +89,9 @@ const Details = ({route}: DetailsProps) => {
           onPress={() =>
             navigation.navigate('AudioPlayer', {
               title,
+              image,
               audioUrl:
-                'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+                'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3',
             })
           }
         />

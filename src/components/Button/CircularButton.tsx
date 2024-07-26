@@ -1,10 +1,26 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import {Icon, IconProps} from '../Icon';
 
 export type CircularButtonProps = {
   onPress?: () => void;
   children?: React.ReactNode;
   size?: number;
+};
+
+type CircularIconButtonProps = CircularButtonProps & {
+  iconProps: IconProps;
+};
+export const CircularIconButton = ({
+  onPress,
+  iconProps,
+  size,
+}: CircularIconButtonProps) => {
+  return (
+    <CircularButton size={size} onPress={onPress}>
+      <Icon {...iconProps} />
+    </CircularButton>
+  );
 };
 
 const StyledCircularButton = styled.TouchableOpacity<{size: number}>`

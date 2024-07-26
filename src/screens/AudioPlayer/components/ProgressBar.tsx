@@ -9,7 +9,11 @@ type ProgressBarProps = {
 const ProgressBar = ({progress, duration}: ProgressBarProps) => {
   const {colors} = useTheme();
   return (
-    <View style={[styles.progressContainer, {backgroundColor: colors.text}]}>
+    <View
+      style={[
+        styles.progressContainer,
+        {backgroundColor: colors.primary.dark},
+      ]}>
       <View
         style={[
           styles.progressBar,
@@ -27,13 +31,12 @@ export default ProgressBar;
 
 const styles = StyleSheet.create({
   progressContainer: {
-    height: 8,
+    height: 10,
     width: '100%',
     borderRadius: 5,
   },
   progressBar: {
     height: '100%',
-    backgroundColor: '#1e88e5',
     borderRadius: 5,
   },
 });

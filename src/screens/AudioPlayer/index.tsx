@@ -1,57 +1,67 @@
 import React from 'react';
-import Container from '../../components/Container';
-import {Item} from '../../graphql/types';
-import styled, {useTheme} from 'styled-components/native';
-import ProgressBar from './components/ProgressBar';
-import useTrackPlayer from '../../hooks/useTrackPlayer';
-import {AudioButton} from './components/AudioControls';
-import {
-  faPause,
-  faPlay,
-  faRotateLeft,
-  faRotateRight,
-} from '@fortawesome/free-solid-svg-icons';
-import Text from '../../components/Text';
 import {RouteProp} from '@react-navigation/native';
-
-export type AudioPlayerProps = Partial<Item> & {
-  audioUrl: string;
-};
-type AudioPlayerScreenRoute = RouteProp<
-  {AudioPlayer: AudioPlayerProps},
-  'AudioPlayer'
->;
-type AudioPlayerRoute = {
-  route: AudioPlayerScreenRoute;
-};
-
+import styled from 'styled-components/native';
+import Container from '../../components/Container';
+import Text from '../../components/Text';
+import ProgressBar from './components/ProgressBar';
+import PlayerToolbar from './components/PlayerToolbar';
+import useAudioPlayer from '../../hooks/useTrackPlayer';
+import {Item} from '../../graphql/types';
+import AnimatedHeader from '../../components/AnimatedHeader';
+import {CircularIconButton} from '../../components/Button/CircularButton';
+import {faXmark} from '@fortawesome/free-solid-svg-icons';
+import useNavigation from '../../hooks/useNavigation';
+import {useTheme} from 'styled-components/native';
 const StyledView = styled.View`
   flex: 1;
   padding-horizontal: ${({theme}) => theme.spacing.lg}px;
   padding-bottom: ${({theme}) => theme.spacing.xl}px;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
 `;
 
-const StyledRow = styled.View`
-  flex-direction: row;
-  align-items: center;
-  margin-top: ${({theme}) => theme.spacing.md}px;
-  gap: ${({theme}) => theme.spacing.md}px;
+const StyledImage = styled.Image`
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: ${({theme}) => theme.borderRadius.lg}px;
+  background-color: ${({theme}) => theme.colors.primary.dark};
+  margin-vertical: ${({theme}) => theme.spacing.lg}px;
 `;
 
-const AudioPlayer = ({route}: AudioPlayerRoute) => {
-  const {title, audioUrl} = route.params;
+const CloseContainer = styled.View`
+  position: absolute;
+  top: 15px;
+  left: 15px;
+`;
 
+export type AudioPlayerProps = Partial<Item> & {
+  audioUrl: string;
+};
+
+type AudioPlayerRouteProps = {
+  route: RouteProp<{AudioPlayer: AudioPlayerProps}, 'AudioPlayer'>;
+};
+
+const AudioPlayer = ({route}: AudioPlayerRouteProps) => {
+  const {title, audioUrl, image} = route.params;
   const {isPlaying, togglePlayback, seekForward, seekBackward, progress} =
-    useTrackPlayer({
-      audioUrl,
-    });
-
+    useAudioPlayer({audioUrl});
+  const navigation = useNavigation();
   const {colors} = useTheme();
   return (
     <Container>
+      <CloseContainer>
+        <CircularIconButton
+          onPress={() => navigation.goBack()}
+          iconProps={{icon: faXmark, color: colors.text, size: 35}}
+          size={50}
+        />
+      </CloseContainer>
       <StyledView>
+        <StyledImage
+          source={{uri: image}}
+          onError={() => console.log('Error loading image')}
+        />
         <Text variant="title" size="xxl" align="center">
           {title}
         </Text>
@@ -59,29 +69,17 @@ const AudioPlayer = ({route}: AudioPlayerRoute) => {
           progress={progress.position}
           duration={progress.duration}
         />
-        <StyledRow>
-          <AudioButton
-            onPress={() => seekBackward(10)}
-            iconProps={{icon: faRotateLeft, color: colors.text, size: 25}}
-            size={50}
-          />
-          <AudioButton
-            onPress={togglePlayback}
-            iconProps={{
-              icon: isPlaying ? faPause : faPlay,
-              color: colors.text,
-              size: 45,
-            }}
-            size={70}
-          />
-          <AudioButton
-            onPress={() => seekForward(10)}
-            iconProps={{icon: faRotateRight, color: colors.text, size: 25}}
-            size={50}
-          />
-        </StyledRow>
+        <PlayerToolbar
+          isPlaying={isPlaying}
+          onTogglePlayback={togglePlayback}
+          onSeekForward={() => seekForward(10)}
+          onSeekBackward={() => seekBackward(10)}
+          duration={progress.duration}
+          position={progress.position}
+        />
       </StyledView>
     </Container>
   );
 };
+
 export default AudioPlayer;
