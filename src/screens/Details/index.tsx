@@ -1,5 +1,5 @@
 // Details.tsx
-import React from 'react';
+import React, {useState} from 'react';
 import {RouteProp} from '@react-navigation/native';
 import Animated, {
   useSharedValue,
@@ -10,6 +10,10 @@ import Text from '../../components/Text';
 import {Item} from '../../graphql/types';
 import AnimatedHeader from '../../components/AnimatedHeader';
 import {useTheme} from 'styled-components/native';
+import useNavigation from '../../hooks/useNavigation';
+import {PressableIcon} from '../../components/Icon';
+import {faHeart} from '@fortawesome/free-solid-svg-icons';
+import useDebounce from '../../hooks/useDebounce';
 
 type DetailsScreenRouteProp = RouteProp<{Details: Item}, 'Details'>;
 
@@ -18,9 +22,11 @@ interface DetailsProps {
 }
 
 const Details = ({route}: DetailsProps) => {
-  const {title, category} = route.params;
+  const {title, category, author} = route.params;
+  const navigation = useNavigation();
   const scrollY = useSharedValue(0);
-  const {spacing} = useTheme();
+  const {spacing, colors} = useTheme();
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const scrollHandler = useAnimatedScrollHandler({
     onScroll: event => {
@@ -28,9 +34,18 @@ const Details = ({route}: DetailsProps) => {
     },
   });
 
+  const toggleFavorite = useDebounce(() => {
+    setIsFavorite(prev => !prev);
+  }, 500);
+
   return (
     <Container>
-      <AnimatedHeader title={title} scrollY={scrollY} scrollThreshold={100} />
+      <AnimatedHeader
+        title={title}
+        scrollY={scrollY}
+        scrollThreshold={100}
+        onPressArrow={() => navigation.goBack()}
+      />
       <Animated.ScrollView
         onScroll={scrollHandler}
         scrollEventThrottle={16}
@@ -38,6 +53,14 @@ const Details = ({route}: DetailsProps) => {
         <Text variant="category" size="lg">
           {category.title}
         </Text>
+        <Text variant="header">{title}</Text>
+        <Text variant="body">{author}</Text>
+        <PressableIcon
+          icon={faHeart}
+          size={30}
+          color={isFavorite ? colors.primary.dark : colors.red}
+          onPress={toggleFavorite}
+        />
       </Animated.ScrollView>
     </Container>
   );

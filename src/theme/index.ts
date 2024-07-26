@@ -12,6 +12,7 @@ const theme: DefaultTheme = {
     secondary: '#ffda7f',
     text: '#fdfcfe',
     backdrop: 'rgba(0, 0, 0, 0.5)',
+    red: '#FF3030',
   },
   spacing: {
     xs: 4,

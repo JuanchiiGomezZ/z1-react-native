@@ -13,6 +13,7 @@ declare module 'styled-components/native' {
       secondary: string;
       text: string;
       backdrop: string;
+      red: string;
     };
     spacing: {
       xs: number;
