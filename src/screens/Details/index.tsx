@@ -86,7 +86,13 @@ const Details = ({route}: DetailsProps) => {
           variant="primary-focus"
           label="Listen now"
           rightIcon={<Icon icon={faPlay} size={20} color={colors.text} />}
-          onPress={() => navigation.navigate('AudioPlayer', {title})}
+          onPress={() =>
+            navigation.navigate('AudioPlayer', {
+              title,
+              audioUrl:
+                'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+            })
+          }
         />
         <StyledImage
           source={{uri: image}}
