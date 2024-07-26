@@ -5,6 +5,7 @@ import Button from '../../components/Button';
 import TrackPlayer, {useProgress} from 'react-native-track-player';
 import styled from 'styled-components/native';
 import ProgressBar from './components/ProgressBar';
+import useTrackPlayer from '../../hooks/useTrackPlayer';
 
 type AudioPlayerProps = Partial<Item> & {
   audioUrl: string;
@@ -19,38 +20,15 @@ const StyledView = styled.View`
 `;
 
 const AudioPlayer = ({}: AudioPlayerProps) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const progress = useProgress();
-
-  useEffect(() => {
-    TrackPlayer.add({
-      id: 'trackId',
-      url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-      title: 'Track Title',
-      artist: 'Track Artist',
+  const {isPlaying, togglePlayback, seekForward, seekBackward, progress} =
+    useTrackPlayer({
+      audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
     });
-  }, []);
-
-  const togglePlayback = async () => {
-    const currentTrack = await TrackPlayer.getActiveTrackIndex();
-    if (currentTrack === null) {
-      await TrackPlayer.play();
-      setIsPlaying(true);
-    } else {
-      if (isPlaying) {
-        await TrackPlayer.pause();
-        setIsPlaying(false);
-      } else {
-        await TrackPlayer.play();
-        setIsPlaying(true);
-      }
-    }
-  };
 
   return (
     <Container>
       <StyledView>
-        <Button label="Play" onPress={togglePlayback} />
+        <Button label={isPlaying ? 'Pause' : 'Play'} onPress={togglePlayback} />
         <ProgressBar
           progress={progress.position}
           duration={progress.duration}

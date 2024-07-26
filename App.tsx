@@ -1,12 +1,22 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import MainNavigation from './src/navigation/MainNavigation';
 import {client, ApolloProvider} from './src/apollo/client';
 import {ThemeProvider} from 'styled-components';
 import theme from './src/theme';
-import useTrackPlayerInit from './src/hooks/useTrackPlayerInit';
+import TrackPlayer from 'react-native-track-player';
 
 const App = () => {
-  const {isLoading} = useTrackPlayerInit();
+  useEffect(() => {
+    const setupPlayer = async () => {
+      try {
+        await TrackPlayer.setupPlayer();
+      } catch (error) {
+        console.error('Error setting up TrackPlayer:', error);
+      }
+    };
+
+    setupPlayer();
+  }, []);
   return (
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
