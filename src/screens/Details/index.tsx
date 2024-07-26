@@ -11,9 +11,10 @@ import {Item} from '../../graphql/types';
 import AnimatedHeader from '../../components/AnimatedHeader';
 import styled, {useTheme} from 'styled-components/native';
 import useNavigation from '../../hooks/useNavigation';
-import {PressableIcon} from '../../components/Icon';
-import {faHeart} from '@fortawesome/free-solid-svg-icons';
+import {Icon, PressableIcon} from '../../components/Icon';
+import {faHeart, faPlay} from '@fortawesome/free-solid-svg-icons';
 import useDebounce from '../../hooks/useDebounce';
+import Button from '../../components/Button';
 
 type DetailsScreenRouteProp = RouteProp<{Details: Item}, 'Details'>;
 
@@ -25,6 +26,7 @@ const StyledRow = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: ${({theme}) => theme.spacing.md}px;
 `;
 
 const StyledImage = styled.Image`
@@ -80,10 +82,17 @@ const Details = ({route}: DetailsProps) => {
             onPress={toggleFavorite}
           />
         </StyledRow>
+        <Button
+          variant="primary-focus"
+          label="Listen now"
+          rightIcon={<Icon icon={faPlay} size={20} color={colors.text} />}
+          onPress={() => navigation.navigate('AudioPlayer', {title})}
+        />
         <StyledImage
           source={{uri: image}}
           onError={() => console.log('Error loading image')}
         />
+
         <Text variant="body">{content}</Text>
       </Animated.ScrollView>
     </Container>
