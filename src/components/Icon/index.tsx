@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {IconDefinition} from '@fortawesome/free-solid-svg-icons';
 import {Pressable} from 'react-native';
 
-type IconProps = {
+export type IconProps = {
   icon: IconDefinition;
   size?: number;
   color?: string;

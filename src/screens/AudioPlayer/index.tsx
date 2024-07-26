@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react';
 import Container from '../../components/Container';
 import {Item} from '../../graphql/types';
 import Button from '../../components/Button';
-import TrackPlayer, {useProgress} from 'react-native-track-player';
 import styled from 'styled-components/native';
 import ProgressBar from './components/ProgressBar';
 import useTrackPlayer from '../../hooks/useTrackPlayer';
+import CircularButton from '../../components/Button/CircularButton';
 
 type AudioPlayerProps = Partial<Item> & {
   audioUrl: string;
@@ -14,9 +14,9 @@ type AudioPlayerProps = Partial<Item> & {
 const StyledView = styled.View`
   flex: 1;
   padding-horizontal: ${({theme}) => theme.spacing.lg}px;
-  padding-bottom: ${({theme}) => theme.spacing.lg}px;
-  justify-content: center;
-  align-items: flex-end;
+  padding-bottom: ${({theme}) => theme.spacing.xl}px;
+  justify-content: flex-end;
+  align-items: center;
 `;
 
 const AudioPlayer = ({}: AudioPlayerProps) => {
@@ -33,6 +33,7 @@ const AudioPlayer = ({}: AudioPlayerProps) => {
           progress={progress.position}
           duration={progress.duration}
         />
+        <CircularButton onPress={() => seekBackward(10)} size={50} />
       </StyledView>
     </Container>
   );
