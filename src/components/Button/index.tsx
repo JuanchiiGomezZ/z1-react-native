@@ -14,7 +14,9 @@ interface ButtonProps {
   variant?: ButtonVariant;
   loading?: boolean;
   onPress: () => void;
-  children: React.ReactNode;
+  label: string;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
 }
 
 const getButtonStyles = (theme: DefaultTheme, variant: ButtonVariant) => {
@@ -32,7 +34,7 @@ const getButtonStyles = (theme: DefaultTheme, variant: ButtonVariant) => {
     case 'outline':
       return css`
         background-color: transparent;
-        border: 1px solid ${theme.colors.primary.default};
+        border: 2px solid ${theme.colors.text};
       `;
     case 'primary-focus':
       return css`
@@ -57,12 +59,14 @@ const StyledButton = styled(TouchableOpacity)<ButtonProps>`
     border-radius: ${theme.borderRadius.md}px;
     align-items: center;
     justify-content: center;
+    flex-direction: row;
+    gap: ${theme.spacing.sm}px;
   `}
 `;
 
 const ButtonText = styled(Text)<{variant: ButtonVariant}>`
   ${({theme, variant}) => css`
-    color: ${variant === 'outline' || variant === 'disabled'
+    color: ${variant === 'disabled'
       ? theme.colors.primary.default
       : theme.colors.text};
     font-size: ${theme.typography.fontSize.xl}px;
@@ -75,16 +79,20 @@ const Button = ({
   variant = 'primary',
   loading = false,
   onPress,
-  children,
-}: ButtonProps) => {
+  label,
+  leftIcon,
+  rightIcon,
+}: ButtonProps & {variant?: ButtonVariant}) => {
   return (
     <StyledButton variant={variant} onPress={onPress}>
       {loading ? (
-        <ActivityIndicator
-          color={variant === 'outline' ? 'primary' : 'white'}
-        />
+        <ActivityIndicator color="white" />
       ) : (
-        <ButtonText variant={variant}>{children}</ButtonText>
+        <>
+          {leftIcon}
+          <ButtonText variant={variant}>{label}</ButtonText>
+          {rightIcon}
+        </>
       )}
     </StyledButton>
   );

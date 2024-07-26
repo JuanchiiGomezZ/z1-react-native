@@ -24,9 +24,9 @@ const Filters = ({
     ({item}: {item: Category}) => (
       <Button
         onPress={() => onFilterChange(item.id)}
-        variant={activeFilter === item.id ? 'primary-focus' : 'primary'}>
-        {item.title}
-      </Button>
+        variant={activeFilter === item.id ? 'primary-focus' : 'primary'}
+        label={item.title}
+      />
     ),
     [activeFilter, onFilterChange],
   );
