@@ -1,12 +1,16 @@
 import React from 'react';
-
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import TabNavigation from './TabNavigation';
-import {navigationScreenNames} from './navigationScreenNames';
 import Details from '../screens/Details';
+import {Item} from '../graphql/types';
 
-const Stack = createNativeStackNavigator();
+export type QueryParams = {
+  TabNavigation: undefined;
+  Details: Item;
+};
+
+const Stack = createNativeStackNavigator<QueryParams>();
 
 const MainNavigation = () => {
   return (
@@ -15,10 +19,7 @@ const MainNavigation = () => {
         initialRouteName="TabNavigation"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="TabNavigation" component={TabNavigation} />
-        <Stack.Screen
-          name={navigationScreenNames.detials}
-          component={Details}
-        />
+        <Stack.Screen name="Details" component={Details} />
       </Stack.Navigator>
     </NavigationContainer>
   );

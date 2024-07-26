@@ -3,7 +3,7 @@ import {
   NavigationProp,
   useNavigation as useNav,
 } from '@react-navigation/native';
-import {QueryParams} from '../navigation/navigationScreenNames';
+import {QueryParams} from '../navigation/MainNavigation';
 
 const useNavigation = () => {
   return useNav<NavigationProp<QueryParams>>();
