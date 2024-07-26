@@ -5,6 +5,10 @@ import {Item} from '../../graphql/types';
 import {Pressable} from 'react-native';
 import Animated, {FadeIn, FadeOut} from 'react-native-reanimated';
 
+type ItemCardProps = Item & {
+  onPress?: () => void;
+};
+
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 const CardContainer = styled.View`
@@ -22,34 +26,37 @@ const CardContent = styled.View`
   gap: ${({theme}) => theme.spacing.sm}px;
 `;
 
-const ItemCard = memo(({id, image, title, category, author}: Item) => {
-  const {colors, borderRadius} = useTheme();
-  return (
-    <AnimatedPressable
-      entering={FadeIn}
-      exiting={FadeOut}
-      style={{
-        flex: 1,
-        backgroundColor: colors.primary.default,
-        borderRadius: borderRadius.md,
-      }}>
-      <CardContainer>
-        <CardImage
-          source={{
-            uri: image,
-          }}
-        />
-        <CardContent>
-          <Text variant="bodyLarge" color={colors.secondary}>
-            {category.title}
-          </Text>
-          <Text variant="title">{title}</Text>
-          <Text variant="bodySmall">{author}</Text>
-          <CardContent />
-        </CardContent>
-      </CardContainer>
-    </AnimatedPressable>
-  );
-});
+const ItemCard = memo(
+  ({id, image, title, category, author, onPress}: ItemCardProps) => {
+    const {colors, borderRadius} = useTheme();
+    return (
+      <AnimatedPressable
+        entering={FadeIn}
+        exiting={FadeOut}
+        style={{
+          flex: 1,
+          backgroundColor: colors.primary.default,
+          borderRadius: borderRadius.md,
+        }}
+        onPress={onPress}>
+        <CardContainer>
+          <CardImage
+            source={{
+              uri: image,
+            }}
+          />
+          <CardContent>
+            <Text variant="bodyLarge" color={colors.secondary}>
+              {category.title}
+            </Text>
+            <Text variant="title">{title}</Text>
+            <Text variant="bodySmall">{author}</Text>
+            <CardContent />
+          </CardContent>
+        </CardContainer>
+      </AnimatedPressable>
+    );
+  },
+);
 
 export default ItemCard;

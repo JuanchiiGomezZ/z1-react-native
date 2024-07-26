@@ -4,6 +4,7 @@ export interface Item {
   image: string;
   category: Category;
   author: string;
+  content: string;
 }
 
 export type Category = {

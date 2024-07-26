@@ -3,7 +3,12 @@ import {useQuery} from '@apollo/client';
 import {GET_ITEMS} from '../graphql/queries';
 import {GetItemsData, Item} from '../graphql/types';
 
-export const useItems = (filterCategoryId: string) => {
+type UseItemsResult = {
+  items: Item[];
+  loading: boolean;
+  error: any;
+};
+export const useItems = (filterCategoryId: string): UseItemsResult => {
   const {loading, error, data} = useQuery<GetItemsData>(GET_ITEMS);
   const [filteredItems, setFilteredItems] = useState<Item[]>([]);
 

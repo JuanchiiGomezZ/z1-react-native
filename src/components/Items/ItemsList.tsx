@@ -4,6 +4,7 @@ import {GetItemsData, Item} from '../../graphql/types';
 import ItemCard from './ItemCard';
 import {useTheme} from 'styled-components/native';
 import ItemsListSkeleton from './ItemsListSkeleton';
+import useNavigation from '../../hooks/useNavigation';
 
 type ItemsListProps = {
   items: Item[];
@@ -11,9 +12,19 @@ type ItemsListProps = {
 };
 const ItemsList = ({items, isLoading}: ItemsListProps) => {
   const {spacing} = useTheme();
+  const navigation = useNavigation();
+
+  const handleItemPress = useCallback(
+    (item: Item) => {
+      navigation.navigate('Details', item);
+    },
+    [navigation],
+  );
 
   const renderItem = useCallback(
-    ({item}: {item: Item}) => <ItemCard {...item} />,
+    ({item}: {item: Item}) => (
+      <ItemCard {...item} onPress={() => handleItemPress(item)} />
+    ),
     [],
   );
 
