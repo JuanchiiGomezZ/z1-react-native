@@ -22,7 +22,7 @@ const baseStyle = css<TextProps>`
 
 const variantStyles = {
   body: css<TextProps>`
-    font-size: ${({theme, size}) => theme.typography.fontSize[size || 'md']}px;
+    font-size: ${({theme, size}) => theme.typography.fontSize[size || 'lg']}px;
     font-family: ${({theme}) => theme.typography.fontFamily.regular};
   `,
   bodySmall: css<TextProps>`

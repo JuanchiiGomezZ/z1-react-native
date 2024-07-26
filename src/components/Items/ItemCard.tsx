@@ -18,6 +18,9 @@ const CardContainer = styled.View`
 const CardImage = styled.Image`
   width: 100%;
   aspect-ratio: 1;
+  background-color: ${({theme}) => theme.colors.primary.dark};
+  border-top-left-radius: ${({theme}) => theme.borderRadius.md}px;
+  border-top-right-radius: ${({theme}) => theme.borderRadius.md}px;
 `;
 
 const CardContent = styled.View`

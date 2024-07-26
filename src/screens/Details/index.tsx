@@ -9,7 +9,7 @@ import Container from '../../components/Container';
 import Text from '../../components/Text';
 import {Item} from '../../graphql/types';
 import AnimatedHeader from '../../components/AnimatedHeader';
-import {useTheme} from 'styled-components/native';
+import styled, {useTheme} from 'styled-components/native';
 import useNavigation from '../../hooks/useNavigation';
 import {PressableIcon} from '../../components/Icon';
 import {faHeart} from '@fortawesome/free-solid-svg-icons';
@@ -17,15 +17,29 @@ import useDebounce from '../../hooks/useDebounce';
 
 type DetailsScreenRouteProp = RouteProp<{Details: Item}, 'Details'>;
 
-interface DetailsProps {
+type DetailsProps = {
   route: DetailsScreenRouteProp;
-}
+};
+
+const StyledRow = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const StyledImage = styled.Image`
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: ${({theme}) => theme.borderRadius.lg}px;
+  background-color: ${({theme}) => theme.colors.primary.dark};
+  margin-vertical: ${({theme}) => theme.spacing.lg}px;
+`;
 
 const Details = ({route}: DetailsProps) => {
-  const {title, category, author} = route.params;
+  const {title, category, author, image, content} = route.params;
   const navigation = useNavigation();
   const scrollY = useSharedValue(0);
-  const {spacing, colors} = useTheme();
+  const {spacing, colors, borderRadius} = useTheme();
   const [isFavorite, setIsFavorite] = useState(false);
 
   const scrollHandler = useAnimatedScrollHandler({
@@ -49,18 +63,25 @@ const Details = ({route}: DetailsProps) => {
       <Animated.ScrollView
         onScroll={scrollHandler}
         scrollEventThrottle={16}
-        style={{paddingHorizontal: spacing.lg}}>
+        contentContainerStyle={{
+          paddingBottom: spacing.xl,
+          paddingHorizontal: spacing.lg,
+        }}>
         <Text variant="category" size="lg">
           {category.title}
         </Text>
         <Text variant="header">{title}</Text>
-        <Text variant="body">{author}</Text>
-        <PressableIcon
-          icon={faHeart}
-          size={30}
-          color={isFavorite ? colors.primary.dark : colors.red}
-          onPress={toggleFavorite}
-        />
+        <StyledRow>
+          <Text variant="body">{author}</Text>
+          <PressableIcon
+            icon={faHeart}
+            size={30}
+            color={isFavorite ? colors.primary.dark : colors.red}
+            onPress={toggleFavorite}
+          />
+        </StyledRow>
+        <StyledImage source={{uri: image}} />
+        <Text variant="body">{content}</Text>
       </Animated.ScrollView>
     </Container>
   );
