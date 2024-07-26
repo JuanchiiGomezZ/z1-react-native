@@ -8543,6 +8543,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-track-player@npm:^4.1.1":
+  version: 4.1.1
+  resolution: "react-native-track-player@npm:4.1.1"
+  peerDependencies:
+    react: ">=16.8.6"
+    react-native: ">=0.60.0-rc.2"
+    react-native-windows: ">=0.63.0"
+    shaka-player: ^4.7.9
+  peerDependenciesMeta:
+    react-native-windows:
+      optional: true
+    shaka-player:
+      optional: true
+  checksum: df1e78d8bda18789a1d0d8118f5c676d10436397df3b20d87408e4abc5312a35613b348bc020b8aceb99e883745f68c915f897a26e798e230c0bfcaf491aeb8e
+  languageName: node
+  linkType: hard
+
 "react-native@npm:0.74.3":
   version: 0.74.3
   resolution: "react-native@npm:0.74.3"
@@ -10426,6 +10443,7 @@ __metadata:
     react-native-safe-area-context: ^4.10.8
     react-native-screens: ^3.32.0
     react-native-svg: ^15.4.0
+    react-native-track-player: ^4.1.1
     react-test-renderer: 18.2.0
     styled-components: ^6.1.12
     typescript: 5.0.4
