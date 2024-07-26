@@ -30,7 +30,7 @@ const CardContent = styled.View`
 `;
 
 const ItemCard = memo(
-  ({id, image, title, category, author, onPress}: ItemCardProps) => {
+  ({image, title, category, author, onPress}: ItemCardProps) => {
     const {colors, borderRadius} = useTheme();
     return (
       <AnimatedPressable

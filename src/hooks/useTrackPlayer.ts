@@ -72,7 +72,7 @@ const useAudioPlayer = ({audioUrl}: UseAudioPlayerProps): UseAudioPlayer => {
 
   const seekTo = useCallback(async (seconds: number) => {
     try {
-      const position = await TrackPlayer.getPosition();
+      const {position} = await TrackPlayer.getProgress();
       await TrackPlayer.seekTo(position + seconds);
     } catch (error) {
       console.error('Error seeking:', error);
