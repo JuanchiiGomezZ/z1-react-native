@@ -3,6 +3,7 @@ import Home from '../screens/Home';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faHome} from '@fortawesome/free-solid-svg-icons';
 import {useTheme} from 'styled-components/native';
+import LotusSVG from '../assets/svg/lotus';
 
 type TabNavigationScreens = {
   Home: undefined;
@@ -32,9 +33,8 @@ const TabNavigation = () => {
         name="Home"
         component={Home}
         options={{
-          tabBarIcon: () => (
-            <FontAwesomeIcon icon={faHome} size={25} color={colors.text} />
-          ),
+          tabBarIcon: () => <LotusSVG width={50} color={colors.text} />,
+          tabBarShowLabel: false,
         }}
       />
     </Tab.Navigator>
