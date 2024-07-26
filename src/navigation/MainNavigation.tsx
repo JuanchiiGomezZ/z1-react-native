@@ -4,10 +4,12 @@ import {NavigationContainer} from '@react-navigation/native';
 import TabNavigation from './TabNavigation';
 import Details from '../screens/Details';
 import {Item} from '../graphql/types';
+import AudioPlayer, {AudioPlayerProps} from '../screens/AudioPlayer';
 
 export type QueryParams = {
   TabNavigation: undefined;
   Details: Item;
+  AudioPlayer: AudioPlayerProps;
 };
 
 const Stack = createNativeStackNavigator<QueryParams>();
@@ -22,6 +24,11 @@ const MainNavigation = () => {
         <Stack.Screen
           name="Details"
           component={Details}
+          options={{animation: 'slide_from_right'}}
+        />
+        <Stack.Screen
+          name="AudioPlayer"
+          component={AudioPlayer}
           options={{animation: 'slide_from_right'}}
         />
       </Stack.Navigator>
