@@ -39,7 +39,7 @@ const Details = ({route}: DetailsProps) => {
   const {title, category, author, image, content} = route.params;
   const navigation = useNavigation();
   const scrollY = useSharedValue(0);
-  const {spacing, colors, borderRadius} = useTheme();
+  const {spacing, colors} = useTheme();
   const [isFavorite, setIsFavorite] = useState(false);
 
   const scrollHandler = useAnimatedScrollHandler({
@@ -57,7 +57,7 @@ const Details = ({route}: DetailsProps) => {
       <AnimatedHeader
         title={title}
         scrollY={scrollY}
-        scrollThreshold={100}
+        scrollThreshold={130}
         onPressArrow={() => navigation.goBack()}
       />
       <Animated.ScrollView
@@ -80,7 +80,10 @@ const Details = ({route}: DetailsProps) => {
             onPress={toggleFavorite}
           />
         </StyledRow>
-        <StyledImage source={{uri: image}} />
+        <StyledImage
+          source={{uri: image}}
+          onError={() => console.log('Error loading image')}
+        />
         <Text variant="body">{content}</Text>
       </Animated.ScrollView>
     </Container>

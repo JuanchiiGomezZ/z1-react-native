@@ -19,7 +19,11 @@ const MainNavigation = () => {
         initialRouteName="TabNavigation"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="TabNavigation" component={TabNavigation} />
-        <Stack.Screen name="Details" component={Details} />
+        <Stack.Screen
+          name="Details"
+          component={Details}
+          options={{animation: 'slide_from_right'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
