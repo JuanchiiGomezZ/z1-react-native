@@ -51,7 +51,9 @@ const ItemCard = memo(
           />
           <CardContent>
             <Text variant="category">{category.title}</Text>
-            <Text variant="title">{title}</Text>
+            <Text variant="title" numberOfLines={2} ellipsizeMode="tail">
+              {title}
+            </Text>
             <Text variant="bodySmall">{author}</Text>
             <CardContent />
           </CardContent>
