@@ -29,7 +29,7 @@ const MainNavigation = () => {
         <Stack.Screen
           name="AudioPlayer"
           component={AudioPlayer}
-          options={{animation: 'slide_from_right'}}
+          options={{animation: 'slide_from_bottom'}}
         />
       </Stack.Navigator>
     </NavigationContainer>

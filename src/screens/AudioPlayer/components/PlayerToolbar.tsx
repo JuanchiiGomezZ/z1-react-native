@@ -1,4 +1,4 @@
-import React, {memo, useMemo} from 'react';
+import React, {memo} from 'react';
 import styled from 'styled-components/native';
 import {
   faPause,
@@ -8,7 +8,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {CircularIconButton} from '@/components/Button/CircularButton';
 import {useTheme} from 'styled-components/native';
-import Text from '@/components/Text';
+import Animated, {FadeInDown} from 'react-native-reanimated';
+import {ANIMATION_DURATION} from '@/assets/data';
 
 const StyledRow = styled.View`
   flex-direction: row;
@@ -22,14 +23,6 @@ type PlayerToolBarProps = {
   onTogglePlayback: () => void;
   onSeekForward: () => void;
   onSeekBackward: () => void;
-  position: number;
-  duration: number;
-};
-
-const formatTime = (seconds: number): string => {
-  const minutes = Math.floor(seconds / 60);
-  const remainingSeconds = Math.floor(seconds % 60);
-  return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
 };
 
 const PlayerToolBar = ({
@@ -37,16 +30,11 @@ const PlayerToolBar = ({
   onTogglePlayback,
   onSeekForward,
   onSeekBackward,
-  duration,
-  position,
 }: PlayerToolBarProps) => {
   const {colors} = useTheme();
-  const remainingTime = useMemo(() => {
-    return formatTime(Math.max(duration - position, 0));
-  }, [duration, position]);
+  
   return (
-    <>
-      <Text variant="title">{remainingTime}</Text>
+    <Animated.View entering={FadeInDown.delay(ANIMATION_DURATION.FAST)}>
       <StyledRow>
         <CircularIconButton
           onPress={onSeekBackward}
@@ -68,7 +56,7 @@ const PlayerToolBar = ({
           size={50}
         />
       </StyledRow>
-    </>
+    </Animated.View>
   );
 };
 

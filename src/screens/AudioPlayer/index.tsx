@@ -64,17 +64,12 @@ const AudioPlayer = ({route}: AudioPlayerRouteProps) => {
         <Text variant="title" size="xxl" align="center">
           {title}
         </Text>
-        <ProgressBar
-          progress={progress.position}
-          duration={progress.duration}
-        />
+        <ProgressBar {...progress} />
         <PlayerToolbar
           isPlaying={isPlaying}
           onTogglePlayback={togglePlayback}
           onSeekForward={() => seekForward(10)}
           onSeekBackward={() => seekBackward(10)}
-          duration={progress.duration}
-          position={progress.position}
         />
       </StyledView>
     </Container>

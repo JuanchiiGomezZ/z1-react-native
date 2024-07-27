@@ -4,6 +4,8 @@ import {RouteProp} from '@react-navigation/native';
 import Animated, {
   useSharedValue,
   useAnimatedScrollHandler,
+  FadeIn,
+  FadeInDown,
 } from 'react-native-reanimated';
 import Container from '@/components/Container';
 import Text from '@/components/Text';
@@ -16,6 +18,7 @@ import {faHeart, faPlay} from '@fortawesome/free-solid-svg-icons';
 import useDebounce from '@/hooks/useDebounce';
 import Button from '@/components/Button';
 import {getRandomNumber} from '@/utils';
+import {ANIMATION_DURATION} from '@/assets/data';
 
 type DetailsScreenRouteProp = RouteProp<{Details: Item}, 'Details'>;
 
@@ -36,6 +39,18 @@ const StyledImage = styled.Image`
   border-radius: ${({theme}) => theme.borderRadius.lg}px;
   background-color: ${({theme}) => theme.colors.primary.dark};
   margin-vertical: ${({theme}) => theme.spacing.lg}px;
+`;
+
+const StyledFixedContainer = styled.View`
+  position: absolute;
+  width: 100%;
+  background-color: ${({theme}) => theme.colors.primary.darker};
+  padding: ${({theme}) => theme.spacing.lg}px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-top-width: 1px;
+  border-top-color: ${({theme}) => theme.colors.secondary};
 `;
 
 const Details = ({route}: DetailsProps) => {
@@ -64,10 +79,13 @@ const Details = ({route}: DetailsProps) => {
         onPressArrow={() => navigation.goBack()}
       />
       <Animated.ScrollView
+        entering={FadeInDown.delay(ANIMATION_DURATION.VERY_FAST).duration(
+          ANIMATION_DURATION.FAST,
+        )}
         onScroll={scrollHandler}
         scrollEventThrottle={16}
         contentContainerStyle={{
-          paddingBottom: spacing.xl,
+          paddingBottom: 100,
           paddingHorizontal: spacing.lg,
         }}>
         <Text variant="category" size="lg">
@@ -83,6 +101,14 @@ const Details = ({route}: DetailsProps) => {
             onPress={toggleFavorite}
           />
         </StyledRow>
+        <StyledImage
+          source={{uri: image}}
+          onError={() => console.log('Error loading image')}
+        />
+
+        <Text variant="body">{content}</Text>
+      </Animated.ScrollView>
+      <StyledFixedContainer>
         <Button
           variant="primary-focus"
           label="Listen now"
@@ -98,13 +124,7 @@ const Details = ({route}: DetailsProps) => {
             })
           }
         />
-        <StyledImage
-          source={{uri: image}}
-          onError={() => console.log('Error loading image')}
-        />
-
-        <Text variant="body">{content}</Text>
-      </Animated.ScrollView>
+      </StyledFixedContainer>
     </Container>
   );
 };
