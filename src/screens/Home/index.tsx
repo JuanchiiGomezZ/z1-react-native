@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {useItems} from '@/hooks/useItems';
 import ItemsList from '@/components/Items/ItemsList';
 import Container from '@/components/Container';
@@ -6,6 +6,7 @@ import Text from '@/components/Text';
 import Filters from '@/components/Filters';
 import {FILTER_DATA} from '@/assets/data';
 import styled from 'styled-components/native';
+import {FlatList} from 'react-native';
 
 const StyledView = styled.View`
   flex: 1;
@@ -14,16 +15,22 @@ const StyledView = styled.View`
 
 const Home = () => {
   const [activeFilter, setActiveFilter] = useState<string>('');
-  const {items, loading, error} = useItems(activeFilter);
+  const items = useItems(activeFilter);
+  const flatlistRef = useRef<FlatList>(null);
 
   const handleFilterChange = useCallback(
     (id: string) => {
       setActiveFilter(prev => (prev === id ? '' : id));
+      // flatlistRef.current?.scrollToOffset({offset: 0});
     },
     [activeFilter],
   );
 
-  if (error) return <Text>Error: {error.message}</Text>;
+  useEffect(() => {
+    flatlistRef.current?.scrollToOffset({offset: 0});
+  }, [activeFilter]);
+
+  if (items.error) return <Text>Error: {items.error.message}</Text>;
   return (
     <Container>
       <StyledView>
@@ -34,9 +41,9 @@ const Home = () => {
           data={FILTER_DATA}
           activeFilter={activeFilter}
           onFilterChange={handleFilterChange}
-          isLoading={loading}
+          isLoading={items.loading}
         />
-        <ItemsList items={items} isLoading={loading} />
+        <ItemsList {...items} flatListRef={flatlistRef} />
       </StyledView>
     </Container>
   );

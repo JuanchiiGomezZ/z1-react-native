@@ -1,20 +1,35 @@
 import React, {useCallback} from 'react';
-import {FlatList} from 'react-native';
 import {Item} from '@/graphql/types';
 import ItemCard from './ItemCard';
 import {useTheme} from 'styled-components/native';
 import ItemsListSkeleton from './ItemsListSkeleton';
 import useNavigation from '@/hooks/useNavigation';
-import Animated, {FadeIn, FadeInDown} from 'react-native-reanimated';
+import Animated, {FadeInDown} from 'react-native-reanimated';
 import {ANIMATION_DURATION} from '@/assets/data';
+import {UseItemsResult} from '@/hooks/useItems';
+import Text from '../Text';
+import useDebounce from '@/hooks/useDebounce';
+import {FlatList} from 'react-native';
 
-type ItemsListProps = {
-  items: Item[];
-  isLoading?: boolean;
+type ItemsListProps = UseItemsResult & {
+  flatListRef?: React.RefObject<FlatList>;
 };
-const ItemsList = ({items, isLoading}: ItemsListProps) => {
+
+const ItemsList = ({
+  items,
+  loading,
+  hasMore,
+  loadMore,
+  flatListRef,
+}: ItemsListProps) => {
   const {spacing} = useTheme();
   const navigation = useNavigation();
+
+  const handleEndReached = useDebounce(() => {
+    if (hasMore && !loading) {
+      loadMore();
+    }
+  }, 500);
 
   const handleItemPress = useCallback(
     (item: Item) => {
@@ -30,9 +45,6 @@ const ItemsList = ({items, isLoading}: ItemsListProps) => {
     [],
   );
 
-  if (isLoading) {
-    return <ItemsListSkeleton numOfElements={6} />;
-  }
   return (
     <Animated.FlatList
       data={items}
@@ -42,19 +54,23 @@ const ItemsList = ({items, isLoading}: ItemsListProps) => {
       contentContainerStyle={{
         gap: spacing.md,
         paddingHorizontal: spacing.lg,
-        paddingBottom: spacing.xl,
+        paddingBottom: spacing.xxxl,
       }}
       columnWrapperStyle={{
         gap: spacing.md,
       }}
       maxToRenderPerBatch={10}
       initialNumToRender={10}
-      windowSize={6}
-      removeClippedSubviews={true}
       showsVerticalScrollIndicator={false}
       entering={FadeInDown.delay(ANIMATION_DURATION.FAST).duration(
         ANIMATION_DURATION.FAST,
       )}
+      onEndReached={handleEndReached}
+      onEndReachedThreshold={0.5}
+      ref={flatListRef}
+      ListFooterComponent={
+        loading ? <ItemsListSkeleton numOfElements={6} /> : null
+      }
     />
   );
 };

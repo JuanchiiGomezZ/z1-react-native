@@ -21,8 +21,8 @@ const ItemsListSkeleton = ({numOfElements}: {numOfElements: number}) => {
         renderItem={() => <ItemCardSkeleton />}
         keyExtractor={(_, index) => index.toString()}
         scrollEnabled={false}
+        style={{gap: spacing.md}}
         contentContainerStyle={{
-          gap: spacing.md,
           paddingHorizontal: spacing.lg,
           paddingBottom: spacing.xl,
         }}
