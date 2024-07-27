@@ -19,6 +19,7 @@ import Button from '@/components/Button';
 import {getRandomNumber} from '@/utils';
 import {ANIMATION_DURATION} from '@/assets/data';
 import Image from '@/components/Image';
+import Footer from '@/components/Footer';
 
 type DetailsScreenRouteProp = RouteProp<{Details: Item}, 'Details'>;
 
@@ -31,7 +32,6 @@ const StyledRow = styled.View`
   align-items: center;
   justify-content: space-between;
 `;
-
 
 const StyledFixedContainer = styled.View`
   width: 100%;
@@ -98,6 +98,7 @@ const Details = ({route}: DetailsProps) => {
           onError={() => console.log('Error loading image')}
         />
         <Text variant="body">{content}</Text>
+        <Footer />
       </Animated.ScrollView>
       <Animated.View
         entering={FadeInDown.delay(ANIMATION_DURATION.MEDIUM).duration(

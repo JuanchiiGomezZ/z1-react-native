@@ -49,7 +49,6 @@ const AudioPlayer = ({route}: AudioPlayerRouteProps) => {
         <CircularIconButton
           onPress={() => navigation.goBack()}
           iconProps={{icon: faXmark, color: colors.text, size: 35}}
-          size={50}
         />
       </CloseContainer>
       <StyledView>

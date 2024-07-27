@@ -49,13 +49,15 @@ const TabNavigation = () => {
           fontSize: typography.fontSize.xs,
           color: colors.text,
         },
+        tabBarHideOnKeyboard: true,
       }}>
       <Tab.Screen
         name="Home"
         component={Home}
         options={{
-          tabBarIcon: ({color, size}) => <Lotus width={40} color={colors.text} />,
-          // tabBarShowLabel: false,
+          tabBarIcon: ({color, size}) => (
+            <Lotus width={40} color={colors.text} />
+          ),
         }}
       />
     </Tab.Navigator>

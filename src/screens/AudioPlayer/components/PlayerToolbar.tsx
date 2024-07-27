@@ -37,8 +37,7 @@ const PlayerToolBar = ({
       <StyledRow>
         <CircularIconButton
           onPress={onSeekBackward}
-          iconProps={{icon: faRotateLeft, color: colors.text, size: 25}}
-          size={50}
+          iconProps={{icon: faRotateLeft, color: colors.text}}
         />
         <CircularIconButton
           onPress={onTogglePlayback}
@@ -51,8 +50,7 @@ const PlayerToolBar = ({
         />
         <CircularIconButton
           onPress={onSeekForward}
-          iconProps={{icon: faRotateRight, color: colors.text, size: 25}}
-          size={50}
+          iconProps={{icon: faRotateRight, color: colors.text}}
         />
       </StyledRow>
     </Animated.View>

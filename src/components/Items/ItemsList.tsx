@@ -10,6 +10,7 @@ import {UseItemsResult} from '@/hooks/useItems';
 import Text from '../Text';
 import useDebounce from '@/hooks/useDebounce';
 import {FlatList} from 'react-native';
+import Footer from '../Footer';
 
 type ItemsListProps = UseItemsResult & {
   flatListRef?: React.RefObject<FlatList>;
@@ -69,7 +70,7 @@ const ItemsList = ({
       onEndReachedThreshold={0.5}
       ref={flatListRef}
       ListFooterComponent={
-        loading ? <ItemsListSkeleton numOfElements={6} /> : null
+        loading ? <ItemsListSkeleton numOfElements={6} /> : <Footer />
       }
     />
   );

@@ -4,7 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import TabNavigation from './TabNavigation';
 import Details from '@/screens/Details';
 import {Item} from '@/graphql/types';
-import AudioPlayer, {AudioPlayerProps} from '@/screens/AudioPlayer';
+import AudioPlayer from '@/screens/AudioPlayer';
 import {MainNavigationScreens} from './types';
 
 const Stack = createNativeStackNavigator<MainNavigationScreens>();
