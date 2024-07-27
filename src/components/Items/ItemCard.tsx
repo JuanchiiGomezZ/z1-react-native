@@ -40,6 +40,7 @@ const ItemCard = memo(
           flex: 1,
           backgroundColor: colors.primary.default,
           borderRadius: borderRadius.md,
+          maxWidth: '50%',
         }}
         onPress={onPress}>
         <CardContainer>
