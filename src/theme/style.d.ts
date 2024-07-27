@@ -21,6 +21,8 @@ declare module 'styled-components/native' {
       md: number;
       lg: number;
       xl: number;
+      xxl: number;
+      xxxl: number;
     };
     typography: {
       fontSize: {
