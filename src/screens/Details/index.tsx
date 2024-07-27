@@ -4,7 +4,6 @@ import {RouteProp} from '@react-navigation/native';
 import Animated, {
   useSharedValue,
   useAnimatedScrollHandler,
-  FadeIn,
   FadeInDown,
 } from 'react-native-reanimated';
 import Container from '@/components/Container';
@@ -42,10 +41,10 @@ const StyledImage = styled.Image`
 `;
 
 const StyledFixedContainer = styled.View`
-  position: absolute;
   width: 100%;
   background-color: ${({theme}) => theme.colors.primary.darker};
   padding: ${({theme}) => theme.spacing.lg}px;
+  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
@@ -108,23 +107,28 @@ const Details = ({route}: DetailsProps) => {
 
         <Text variant="body">{content}</Text>
       </Animated.ScrollView>
-      <StyledFixedContainer>
-        <Button
-          variant="primary-focus"
-          label="Listen now"
-          rightIcon={<Icon icon={faPlay} size={20} color={colors.text} />}
-          onPress={() =>
-            navigation.navigate('AudioPlayer', {
-              title,
-              image,
-              audioUrl: `https://www.soundhelix.com/examples/mp3/SoundHelix-Song-${getRandomNumber(
-                1,
-                17,
-              )}.mp3`,
-            })
-          }
-        />
-      </StyledFixedContainer>
+      <Animated.View
+        entering={FadeInDown.delay(ANIMATION_DURATION.MEDIUM).duration(
+          ANIMATION_DURATION.FAST,
+        )}>
+        <StyledFixedContainer>
+          <Button
+            variant="primary-focus"
+            label="Listen now"
+            rightIcon={<Icon icon={faPlay} size={20} color={colors.text} />}
+            onPress={() =>
+              navigation.navigate('AudioPlayer', {
+                title,
+                image,
+                audioUrl: `https://www.soundhelix.com/examples/mp3/SoundHelix-Song-${getRandomNumber(
+                  1,
+                  17,
+                )}.mp3`,
+              })
+            }
+          />
+        </StyledFixedContainer>
+      </Animated.View>
     </Container>
   );
 };
