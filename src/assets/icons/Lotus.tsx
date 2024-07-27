@@ -8,7 +8,7 @@ export type SvgComponentProps = {
   color?: string;
 };
 
-const LotusSVG = ({
+const Lotus = ({
   width = 80,
   height = 80,
   color = 'black',
@@ -25,4 +25,4 @@ const LotusSVG = ({
   );
 };
 
-export default LotusSVG;
+export default Lotus;

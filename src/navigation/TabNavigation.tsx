@@ -4,7 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import LinearGradient from 'react-native-linear-gradient';
 import Home from '@/screens/Home';
 import {useTheme} from 'styled-components/native';
-import LotusSVG from '../../assets/svg/Lotus';
+import Lotus from '@/assets/icons/Lotus';
 
 type TabNavigationScreens = {
   Home: undefined;
@@ -52,7 +52,7 @@ const TabNavigation = () => {
         name="Home"
         component={Home}
         options={{
-          tabBarIcon: () => <LotusSVG width={50} color={colors.text} />,
+          tabBarIcon: () => <Lotus width={50} color={colors.text} />,
           // tabBarShowLabel: false,
         }}
       />
