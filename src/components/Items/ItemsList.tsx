@@ -5,6 +5,8 @@ import ItemCard from './ItemCard';
 import {useTheme} from 'styled-components/native';
 import ItemsListSkeleton from './ItemsListSkeleton';
 import useNavigation from '@/hooks/useNavigation';
+import Animated, {FadeIn, FadeInDown} from 'react-native-reanimated';
+import {ANIMATION_DURATION} from '@/assets/data';
 
 type ItemsListProps = {
   items: Item[];
@@ -32,7 +34,7 @@ const ItemsList = ({items, isLoading}: ItemsListProps) => {
     return <ItemsListSkeleton numOfElements={6} />;
   }
   return (
-    <FlatList
+    <Animated.FlatList
       data={items}
       keyExtractor={(item: Item) => item.id}
       renderItem={renderItem}
@@ -50,6 +52,9 @@ const ItemsList = ({items, isLoading}: ItemsListProps) => {
       windowSize={6}
       removeClippedSubviews={true}
       showsVerticalScrollIndicator={false}
+      entering={FadeInDown.delay(ANIMATION_DURATION.FAST).duration(
+        ANIMATION_DURATION.FAST,
+      )}
     />
   );
 };

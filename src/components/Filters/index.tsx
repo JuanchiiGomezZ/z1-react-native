@@ -1,9 +1,10 @@
 import React, {memo, useCallback} from 'react';
-import {FlatList} from 'react-native';
 import {useTheme} from 'styled-components/native';
 import Button from '@/components/Button';
 import {Category} from '@/graphql/types';
 import FiltersSkeleton from './FiltersSkeleton';
+import Animated, {FadeIn} from 'react-native-reanimated';
+import {ANIMATION_DURATION} from '@/assets/data';
 
 type FiltersProps = {
   data: Category[];
@@ -35,7 +36,7 @@ const Filters = ({
     return <FiltersSkeleton numOfElements={6} />;
   }
   return (
-    <FlatList
+    <Animated.FlatList
       data={data}
       horizontal
       showsHorizontalScrollIndicator={false}
@@ -48,6 +49,9 @@ const Filters = ({
         paddingRight: spacing.xl,
         gap: spacing.sm,
       }}
+      entering={FadeIn.delay(ANIMATION_DURATION.FAST).duration(
+        ANIMATION_DURATION.FAST,
+      )}
     />
   );
 };

@@ -29,7 +29,6 @@ const StyledRow = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: ${({theme}) => theme.spacing.md}px;
 `;
 
 const StyledImage = styled.Image`
@@ -96,7 +95,7 @@ const Details = ({route}: DetailsProps) => {
           <PressableIcon
             icon={faHeart}
             size={30}
-            color={isFavorite ? colors.primary.dark : colors.red}
+            color={isFavorite ? colors.red : colors.primary.dark}
             onPress={toggleFavorite}
           />
         </StyledRow>
