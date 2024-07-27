@@ -7,7 +7,6 @@ import useNavigation from '@/hooks/useNavigation';
 import Animated, {FadeInDown} from 'react-native-reanimated';
 import {ANIMATION_DURATION} from '@/assets/data';
 import {UseItemsResult} from '@/hooks/useItems';
-import Text from '../Text';
 import useDebounce from '@/hooks/useDebounce';
 import {FlatList} from 'react-native';
 import Footer from '../Footer';
@@ -21,6 +20,7 @@ const ItemsList = ({
   loading,
   hasMore,
   loadMore,
+  loadingMore,
   flatListRef,
 }: ItemsListProps) => {
   const {spacing} = useTheme();
@@ -70,7 +70,11 @@ const ItemsList = ({
       onEndReachedThreshold={0.5}
       ref={flatListRef}
       ListFooterComponent={
-        loading ? <ItemsListSkeleton numOfElements={6} /> : <Footer />
+        loading || loadingMore ? (
+          <ItemsListSkeleton numOfElements={6} />
+        ) : (
+          <Footer />
+        )
       }
     />
   );

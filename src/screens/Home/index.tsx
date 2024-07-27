@@ -8,7 +8,6 @@ import {FILTER_DATA} from '@/assets/data';
 import styled from 'styled-components/native';
 import {FlatList} from 'react-native';
 import ErrorState from '@/components/ErrorState';
-import Footer from '@/components/Footer';
 
 const StyledView = styled.View`
   flex: 1;

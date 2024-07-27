@@ -9,6 +9,7 @@ export type UseItemsResult = {
   error: Error | undefined;
   loadMore: () => void;
   hasMore: boolean;
+  loadingMore: boolean;
 };
 
 type useItemsProps = {
@@ -22,6 +23,7 @@ export const useItems = ({
 }: useItemsProps): UseItemsResult => {
   const {loading, error, data} = useQuery<GetItemsData>(GET_ITEMS);
   const [page, setPage] = useState(1);
+  const [loadingMore, setLoadingMore] = useState(false);
 
   const filteredItems = useMemo(() => {
     if (!data?.items) return [];
@@ -34,14 +36,19 @@ export const useItems = ({
   }, [filteredItems, page]);
 
   const loadMore = () => {
-    setPage(prevPage => prevPage + 1);
+    setLoadingMore(true);
+    setTimeout(() => {
+      setPage(prevPage => prevPage + 1);
+      setLoadingMore(false);
+    }, 1000); // Simulate network request
   };
 
   const hasMore = paginatedItems.length < filteredItems.length;
 
   return {
     items: paginatedItems,
-    loading,
+    loading: loading,
+    loadingMore,
     error,
     loadMore,
     hasMore,
