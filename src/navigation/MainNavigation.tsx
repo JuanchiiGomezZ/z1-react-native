@@ -5,27 +5,21 @@ import TabNavigation from './TabNavigation';
 import Details from '@/screens/Details';
 import {Item} from '@/graphql/types';
 import AudioPlayer, {AudioPlayerProps} from '@/screens/AudioPlayer';
+import {MainNavigationScreens} from './types';
 
-export type QueryParams = {
-  TabNavigation: undefined;
-  Details: Item;
-  AudioPlayer: AudioPlayerProps;
-};
-
-const Stack = createNativeStackNavigator<QueryParams>();
+const Stack = createNativeStackNavigator<MainNavigationScreens>();
 
 const MainNavigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName="TabNavigation"
-        screenOptions={{headerShown: false}}>
+        screenOptions={{
+          headerShown: false,
+          animation: 'slide_from_right',
+        }}>
         <Stack.Screen name="TabNavigation" component={TabNavigation} />
-        <Stack.Screen
-          name="Details"
-          component={Details}
-          options={{animation: 'slide_from_right'}}
-        />
+        <Stack.Screen name="Details" component={Details} />
         <Stack.Screen
           name="AudioPlayer"
           component={AudioPlayer}

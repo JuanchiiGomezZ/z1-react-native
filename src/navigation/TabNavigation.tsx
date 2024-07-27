@@ -1,19 +1,33 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import LinearGradient from 'react-native-linear-gradient';
 import Home from '@/screens/Home';
 import {useTheme} from 'styled-components/native';
 import Lotus from '@/assets/icons/Lotus';
-
-type TabNavigationScreens = {
-  Home: undefined;
-};
+import { TabNavigationScreens } from './types';
 
 const Tab = createBottomTabNavigator<TabNavigationScreens>();
 
 const TabNavigation = () => {
   const {colors, typography} = useTheme();
+
+  const tabBarBackground = useCallback(
+    () => (
+      <View style={StyleSheet.absoluteFill}>
+        <LinearGradient
+          colors={[
+            'rgba(0,0,0,0)',
+            colors.primary.darker,
+            colors.primary.darker,
+          ]}
+          locations={[0, 0.2, 1]}
+          style={StyleSheet.absoluteFill}
+        />
+      </View>
+    ),
+    [colors.primary.darker],
+  );
 
   return (
     <Tab.Navigator
@@ -29,19 +43,7 @@ const TabNavigation = () => {
           borderTopWidth: 0,
           height: 60,
         },
-        tabBarBackground: () => (
-          <View style={StyleSheet.absoluteFill}>
-            <LinearGradient
-              colors={[
-                'rgba(0,0,0,0)',
-                colors.primary.darker,
-                colors.primary.darker,
-              ]}
-              locations={[0, 0.2, 1]}
-              style={[StyleSheet.absoluteFill]}
-            />
-          </View>
-        ),
+        tabBarBackground,
         tabBarLabelStyle: {
           fontFamily: typography.fontFamily.medium,
           fontSize: typography.fontSize.xs,
@@ -52,7 +54,7 @@ const TabNavigation = () => {
         name="Home"
         component={Home}
         options={{
-          tabBarIcon: () => <Lotus width={50} color={colors.text} />,
+          tabBarIcon: ({color, size}) => <Lotus width={size} color={color} />,
           // tabBarShowLabel: false,
         }}
       />
