@@ -15,6 +15,7 @@ import {Icon, PressableIcon} from '../../components/Icon';
 import {faHeart, faPlay} from '@fortawesome/free-solid-svg-icons';
 import useDebounce from '../../hooks/useDebounce';
 import Button from '../../components/Button';
+import {getRandomNumber} from '../../utils';
 
 type DetailsScreenRouteProp = RouteProp<{Details: Item}, 'Details'>;
 
@@ -90,8 +91,10 @@ const Details = ({route}: DetailsProps) => {
             navigation.navigate('AudioPlayer', {
               title,
               image,
-              audioUrl:
-                'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3',
+              audioUrl: `https://www.soundhelix.com/examples/mp3/SoundHelix-Song-${getRandomNumber(
+                1,
+                17,
+              )}.mp3`,
             })
           }
         />

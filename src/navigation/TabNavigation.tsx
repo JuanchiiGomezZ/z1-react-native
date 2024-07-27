@@ -4,7 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import LinearGradient from 'react-native-linear-gradient';
 import Home from '../screens/Home';
 import {useTheme} from 'styled-components/native';
-import LotusSVG from '../assets/svg/lotus';
+import LotusSVG from '../assets/svg/Lotus';
 
 type TabNavigationScreens = {
   Home: undefined;
@@ -33,11 +33,11 @@ const TabNavigation = () => {
           <View style={StyleSheet.absoluteFill}>
             <LinearGradient
               colors={[
-                'rgba(0,0,0,0)', // Completely transparent
-                colors.primary.darker, // Solid color
-                colors.primary.darker, // Solid color (repeated to ensure full coverage)
+                'rgba(0,0,0,0)',
+                colors.primary.darker,
+                colors.primary.darker,
               ]}
-              locations={[0, 0.2, 1]} // 20% gradient, 80% solid
+              locations={[0, 0.2, 1]}
               style={[StyleSheet.absoluteFill]}
             />
           </View>
