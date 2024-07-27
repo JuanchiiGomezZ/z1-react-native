@@ -14,7 +14,6 @@ import {ANIMATION_DURATION} from '@/assets/data';
 const StyledRow = styled.View`
   flex-direction: row;
   align-items: center;
-  margin-top: ${({theme}) => theme.spacing.md}px;
   gap: ${({theme}) => theme.spacing.md}px;
 `;
 
@@ -32,9 +31,9 @@ const PlayerToolBar = ({
   onSeekBackward,
 }: PlayerToolBarProps) => {
   const {colors} = useTheme();
-  
+
   return (
-    <Animated.View entering={FadeInDown.delay(ANIMATION_DURATION.FAST)}>
+    <Animated.View entering={FadeInDown.delay(ANIMATION_DURATION.MEDIUM)}>
       <StyledRow>
         <CircularIconButton
           onPress={onSeekBackward}

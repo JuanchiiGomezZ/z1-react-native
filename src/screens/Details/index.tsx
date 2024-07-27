@@ -49,7 +49,7 @@ const StyledFixedContainer = styled.View`
   bottom: 0;
   left: 0;
   right: 0;
-  border-top-width: 1px;
+  border-top-width: 0.5px;
   border-top-color: ${({theme}) => theme.colors.secondary};
 `;
 

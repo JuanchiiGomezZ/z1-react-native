@@ -11,6 +11,8 @@ import {CircularIconButton} from '@/components/Button/CircularButton';
 import {faXmark} from '@fortawesome/free-solid-svg-icons';
 import useNavigation from '@/hooks/useNavigation';
 import {useTheme} from 'styled-components/native';
+import Animated, {FadeInDown} from 'react-native-reanimated';
+import {ANIMATION_DURATION} from '@/assets/data';
 const StyledView = styled.View`
   flex: 1;
   padding-horizontal: ${({theme}) => theme.spacing.lg}px;
@@ -24,7 +26,7 @@ const StyledImage = styled.Image`
   aspect-ratio: 1;
   border-radius: ${({theme}) => theme.borderRadius.lg}px;
   background-color: ${({theme}) => theme.colors.primary.dark};
-  margin-vertical: ${({theme}) => theme.spacing.lg}px;
+  margin-bottom: ${({theme}) => theme.spacing.sm}px;
 `;
 
 const CloseContainer = styled.View`
@@ -57,13 +59,15 @@ const AudioPlayer = ({route}: AudioPlayerRouteProps) => {
         />
       </CloseContainer>
       <StyledView>
-        <StyledImage
-          source={{uri: image}}
-          onError={() => console.log('Error loading image')}
-        />
-        <Text variant="title" size="xxl" align="center">
-          {title}
-        </Text>
+        <Animated.View entering={FadeInDown.delay(ANIMATION_DURATION.FAST)}>
+          <StyledImage
+            source={{uri: image}}
+            onError={() => console.log('Error loading image')}
+          />
+          <Text variant="title" size="xxl" align="center">
+            {title}
+          </Text>
+        </Animated.View>
         <ProgressBar {...progress} />
         <PlayerToolbar
           isPlaying={isPlaying}
