@@ -7,6 +7,7 @@ import Filters from '@/components/Filters';
 import {FILTER_DATA} from '@/assets/data';
 import styled from 'styled-components/native';
 import {FlatList} from 'react-native';
+import ErrorState from '@/components/ErrorState';
 
 const StyledView = styled.View`
   flex: 1;
@@ -29,7 +30,6 @@ const Home = () => {
     flatlistRef.current?.scrollToOffset({offset: 0});
   }, [activeFilter]);
 
-  if (items.error) return <Text>Error: {items.error.message}</Text>;
   return (
     <Container>
       <StyledView>
@@ -42,7 +42,11 @@ const Home = () => {
           onFilterChange={handleFilterChange}
           isLoading={items.loading}
         />
-        <ItemsList {...items} flatListRef={flatlistRef} />
+        {items.error ? (
+          <ErrorState />
+        ) : (
+          <ItemsList {...items} flatListRef={flatlistRef} />
+        )}
       </StyledView>
     </Container>
   );

@@ -1,9 +1,7 @@
-import {useState, useEffect, useMemo} from 'react';
+import {useState, useMemo} from 'react';
 import {useQuery} from '@apollo/client';
 import {GET_ITEMS} from '@/graphql/queries';
 import {GetItemsData, Item} from '@/graphql/types';
-
-const ITEMS_PER_PAGE = 10;
 
 export type UseItemsResult = {
   items: Item[];
@@ -20,7 +18,7 @@ type useItemsProps = {
 
 export const useItems = ({
   filterCategoryId,
-  itemsPerPage,
+  itemsPerPage = 10,
 }: useItemsProps): UseItemsResult => {
   const {loading, error, data} = useQuery<GetItemsData>(GET_ITEMS);
   const [page, setPage] = useState(1);
@@ -32,7 +30,7 @@ export const useItems = ({
   }, [data, filterCategoryId]);
 
   const paginatedItems = useMemo(() => {
-    return filteredItems.slice(0, page * (itemsPerPage || ITEMS_PER_PAGE));
+    return filteredItems.slice(0, page * itemsPerPage);
   }, [filteredItems, page]);
 
   const loadMore = () => {

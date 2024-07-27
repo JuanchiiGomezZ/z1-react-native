@@ -4,7 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import LinearGradient from 'react-native-linear-gradient';
 import Home from '@/screens/Home';
 import {useTheme} from 'styled-components/native';
-import Lotus from '@/assets/icons/Lotus';
+import Lotus from '@/assets/images/Lotus';
 import {TabNavigationScreens} from './types';
 
 const Tab = createBottomTabNavigator<TabNavigationScreens>();

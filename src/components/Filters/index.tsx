@@ -42,6 +42,7 @@ const Filters = ({
       showsHorizontalScrollIndicator={false}
       keyExtractor={item => item.id}
       renderItem={renderItem}
+      style={{flexGrow: 0}}
       contentContainerStyle={{
         marginLeft: spacing.lg,
         paddingBottom: spacing.xl,
