@@ -15,13 +15,12 @@ const StyledView = styled.View`
 
 const Home = () => {
   const [activeFilter, setActiveFilter] = useState<string>('');
-  const items = useItems(activeFilter);
+  const items = useItems({filterCategoryId: activeFilter, itemsPerPage: 10});
   const flatlistRef = useRef<FlatList>(null);
 
   const handleFilterChange = useCallback(
     (id: string) => {
       setActiveFilter(prev => (prev === id ? '' : id));
-      // flatlistRef.current?.scrollToOffset({offset: 0});
     },
     [activeFilter],
   );

@@ -3,7 +3,7 @@ import {useQuery} from '@apollo/client';
 import {GET_ITEMS} from '@/graphql/queries';
 import {GetItemsData, Item} from '@/graphql/types';
 
-const ITEMS_PER_PAGE = 10; // Ajusta este número según tus necesidades
+const ITEMS_PER_PAGE = 10;
 
 export type UseItemsResult = {
   items: Item[];
@@ -13,7 +13,15 @@ export type UseItemsResult = {
   hasMore: boolean;
 };
 
-export const useItems = (filterCategoryId: string): UseItemsResult => {
+type useItemsProps = {
+  filterCategoryId: string;
+  itemsPerPage?: number;
+};
+
+export const useItems = ({
+  filterCategoryId,
+  itemsPerPage,
+}: useItemsProps): UseItemsResult => {
   const {loading, error, data} = useQuery<GetItemsData>(GET_ITEMS);
   const [page, setPage] = useState(1);
 
@@ -24,7 +32,7 @@ export const useItems = (filterCategoryId: string): UseItemsResult => {
   }, [data, filterCategoryId]);
 
   const paginatedItems = useMemo(() => {
-    return filteredItems.slice(0, page * ITEMS_PER_PAGE);
+    return filteredItems.slice(0, page * (itemsPerPage || ITEMS_PER_PAGE));
   }, [filteredItems, page]);
 
   const loadMore = () => {
