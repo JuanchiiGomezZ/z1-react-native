@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {useItems} from '@/hooks/useItems';
 import ItemsList from '@/components/Items/ItemsList';
 import Container from '@/components/Container';
@@ -18,11 +18,7 @@ const Home = () => {
 
   const handleFilterChange = useCallback(
     (id: string) => {
-      if (id === activeFilter) {
-        setActiveFilter('');
-        return;
-      }
-      setActiveFilter(id);
+      setActiveFilter(prev => (prev === id ? '' : id));
     },
     [activeFilter],
   );
