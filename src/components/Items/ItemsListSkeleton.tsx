@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, {useTheme} from 'styled-components/native';
-import Skeleton from '../Skeleton';
+import Skeleton from '@/components/Skeleton';
 import {FlatList} from 'react-native';
 
 const ItemCardSkeleton = styled.View`

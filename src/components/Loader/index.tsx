@@ -1,6 +1,5 @@
 import React from 'react';
-import {ActivityIndicator, View} from 'react-native';
-import Container from '../Container';
+import {ActivityIndicator} from 'react-native';
 import styled, {useTheme} from 'styled-components/native';
 
 const StyledContainer = styled.View`

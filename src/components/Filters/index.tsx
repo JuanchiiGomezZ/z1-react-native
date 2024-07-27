@@ -1,8 +1,8 @@
 import React, {memo, useCallback} from 'react';
 import {FlatList} from 'react-native';
 import {useTheme} from 'styled-components/native';
-import Button from '../Button';
-import {Category} from '../../graphql/types';
+import Button from '@/components/Button';
+import {Category} from '@/graphql/types';
 import FiltersSkeleton from './FiltersSkeleton';
 
 type FiltersProps = {

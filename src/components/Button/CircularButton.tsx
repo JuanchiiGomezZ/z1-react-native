@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import {Icon, IconProps} from '../Icon';
+import {Icon, IconProps} from '@/components/Icon';
 
 export type CircularButtonProps = {
   onPress?: () => void;

@@ -6,9 +6,9 @@ import {
   faRotateLeft,
   faRotateRight,
 } from '@fortawesome/free-solid-svg-icons';
-import {CircularIconButton} from '../../../components/Button/CircularButton';
+import {CircularIconButton} from '@/components/Button/CircularButton';
 import {useTheme} from 'styled-components/native';
-import Text from '../../../components/Text';
+import Text from '@/components/Text';
 
 const StyledRow = styled.View`
   flex-direction: row;
@@ -32,14 +32,14 @@ const formatTime = (seconds: number): string => {
   return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
 };
 
-const PlayerToolBar: React.FC<PlayerToolBarProps> = ({
+const PlayerToolBar = ({
   isPlaying,
   onTogglePlayback,
   onSeekForward,
   onSeekBackward,
   duration,
   position,
-}) => {
+}: PlayerToolBarProps) => {
   const {colors} = useTheme();
   const remainingTime = useMemo(() => {
     return formatTime(Math.max(duration - position, 0));

@@ -1,7 +1,7 @@
 import React from 'react';
 import {TouchableOpacity, ActivityIndicator} from 'react-native';
 import styled, {css, DefaultTheme} from 'styled-components/native';
-import Text from '../Text';
+import Text from '@/components/Text';
 
 type ButtonVariant =
   | 'primary'

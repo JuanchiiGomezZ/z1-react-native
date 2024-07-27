@@ -2,9 +2,9 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import LinearGradient from 'react-native-linear-gradient';
-import Home from '../screens/Home';
+import Home from '@/screens/Home';
 import {useTheme} from 'styled-components/native';
-import LotusSVG from '../assets/svg/Lotus';
+import LotusSVG from '../../assets/svg/Lotus';
 
 type TabNavigationScreens = {
   Home: undefined;

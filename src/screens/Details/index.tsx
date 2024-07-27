@@ -5,17 +5,17 @@ import Animated, {
   useSharedValue,
   useAnimatedScrollHandler,
 } from 'react-native-reanimated';
-import Container from '../../components/Container';
-import Text from '../../components/Text';
-import {Item} from '../../graphql/types';
-import AnimatedHeader from '../../components/AnimatedHeader';
+import Container from '@/components/Container';
+import Text from '@/components/Text';
+import {Item} from '@/graphql/types';
+import AnimatedHeader from '@/components/AnimatedHeader';
 import styled, {useTheme} from 'styled-components/native';
-import useNavigation from '../../hooks/useNavigation';
-import {Icon, PressableIcon} from '../../components/Icon';
+import useNavigation from '@/hooks/useNavigation';
+import {Icon, PressableIcon} from '@/components/Icon';
 import {faHeart, faPlay} from '@fortawesome/free-solid-svg-icons';
-import useDebounce from '../../hooks/useDebounce';
-import Button from '../../components/Button';
-import {getRandomNumber} from '../../utils';
+import useDebounce from '@/hooks/useDebounce';
+import Button from '@/components/Button';
+import {getRandomNumber} from '@/utils';
 
 type DetailsScreenRouteProp = RouteProp<{Details: Item}, 'Details'>;
 

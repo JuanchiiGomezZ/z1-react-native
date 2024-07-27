@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import {useQuery} from '@apollo/client';
-import {GET_ITEMS} from '../graphql/queries';
-import {GetItemsData, Item} from '../graphql/types';
+import {GET_ITEMS} from '@/graphql/queries';
+import {GetItemsData, Item} from '@/graphql/types';
 
 type UseItemsResult = {
   items: Item[];

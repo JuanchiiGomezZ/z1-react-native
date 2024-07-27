@@ -1,4 +1,4 @@
-import {Category} from '../graphql/types';
+import {Category} from '@/graphql/types';
 
 export const FILTER_DATA: Category[] = [
   {

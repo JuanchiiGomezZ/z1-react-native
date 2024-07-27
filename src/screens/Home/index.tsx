@@ -1,10 +1,10 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {useItems} from '../../hooks/useItems';
-import ItemsList from '../../components/Items/ItemsList';
-import Container from '../../components/Container';
-import Text from '../../components/Text';
-import Filters from '../../components/Filters';
-import {FILTER_DATA} from '../../assets/data';
+import {useItems} from '@/hooks/useItems';
+import ItemsList from '@/components/Items/ItemsList';
+import Container from '@/components/Container';
+import Text from '@/components/Text';
+import Filters from '@/components/Filters';
+import {FILTER_DATA} from '@/assets/data';
 import styled from 'styled-components/native';
 
 const StyledView = styled.View`

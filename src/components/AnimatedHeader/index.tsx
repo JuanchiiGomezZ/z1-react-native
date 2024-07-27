@@ -11,9 +11,9 @@ import Animated, {
   Extrapolation,
 } from 'react-native-reanimated';
 import {useTheme} from 'styled-components/native';
-import {PressableIcon} from '../Icon';
+import {PressableIcon} from '@/components/Icon';
 import {faArrowLeft} from '@fortawesome/free-solid-svg-icons';
-import Text from '../Text';
+import Text from '@/components/Text';
 
 type HeaderProps = {
   title: string;

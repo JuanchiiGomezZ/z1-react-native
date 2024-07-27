@@ -2,9 +2,9 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import TabNavigation from './TabNavigation';
-import Details from '../screens/Details';
-import {Item} from '../graphql/types';
-import AudioPlayer, {AudioPlayerProps} from '../screens/AudioPlayer';
+import Details from '@/screens/Details';
+import {Item} from '@/graphql/types';
+import AudioPlayer, {AudioPlayerProps} from '@/screens/AudioPlayer';
 
 export type QueryParams = {
   TabNavigation: undefined;

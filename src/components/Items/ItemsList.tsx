@@ -1,10 +1,10 @@
 import React, {useCallback} from 'react';
 import {FlatList} from 'react-native';
-import {GetItemsData, Item} from '../../graphql/types';
+import {Item} from '@/graphql/types';
 import ItemCard from './ItemCard';
 import {useTheme} from 'styled-components/native';
 import ItemsListSkeleton from './ItemsListSkeleton';
-import useNavigation from '../../hooks/useNavigation';
+import useNavigation from '@/hooks/useNavigation';
 
 type ItemsListProps = {
   items: Item[];
