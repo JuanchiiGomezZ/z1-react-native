@@ -33,7 +33,7 @@ const PlayerToolBar = ({
   const {colors} = useTheme();
 
   return (
-    <Animated.View entering={FadeInDown.delay(ANIMATION_DURATION.MEDIUM)}>
+    <Animated.View entering={FadeInDown.delay(ANIMATION_DURATION.SLOW)}>
       <StyledRow>
         <CircularIconButton
           onPress={onSeekBackward}

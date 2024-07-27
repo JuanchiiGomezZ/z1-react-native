@@ -52,12 +52,12 @@ const ProgressBar = ({duration, position}: ProgressBarProps) => {
   return (
     <Animated.View
       style={{width: '100%', alignItems: 'flex-end', marginTop: spacing.lg}}
-      entering={FadeInDown.delay(ANIMATION_DURATION.FAST + 100)}>
+      entering={FadeInDown.delay(ANIMATION_DURATION.MEDIUM)}>
       <ProgressContainer>
         <StyledProgressBar percentage={(position / duration) * 100} />
         <ProgressCircle />
       </ProgressContainer>
-      <Text variant="bodyLarge">-{remainingTime}</Text>
+      <Text variant="bodyLarge">{remainingTime}</Text>
     </Animated.View>
   );
 };
