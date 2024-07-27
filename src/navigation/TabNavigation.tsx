@@ -5,7 +5,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Home from '@/screens/Home';
 import {useTheme} from 'styled-components/native';
 import Lotus from '@/assets/icons/Lotus';
-import { TabNavigationScreens } from './types';
+import {TabNavigationScreens} from './types';
 
 const Tab = createBottomTabNavigator<TabNavigationScreens>();
 
@@ -54,7 +54,7 @@ const TabNavigation = () => {
         name="Home"
         component={Home}
         options={{
-          tabBarIcon: ({color, size}) => <Lotus width={size} color={color} />,
+          tabBarIcon: ({color, size}) => <Lotus width={40} color={colors.text} />,
           // tabBarShowLabel: false,
         }}
       />
