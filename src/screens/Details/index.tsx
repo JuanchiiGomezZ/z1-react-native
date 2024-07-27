@@ -18,6 +18,7 @@ import useDebounce from '@/hooks/useDebounce';
 import Button from '@/components/Button';
 import {getRandomNumber} from '@/utils';
 import {ANIMATION_DURATION} from '@/assets/data';
+import Image from '@/components/Image';
 
 type DetailsScreenRouteProp = RouteProp<{Details: Item}, 'Details'>;
 
@@ -31,13 +32,6 @@ const StyledRow = styled.View`
   justify-content: space-between;
 `;
 
-const StyledImage = styled.Image`
-  width: 100%;
-  aspect-ratio: 1;
-  border-radius: ${({theme}) => theme.borderRadius.lg}px;
-  background-color: ${({theme}) => theme.colors.primary.dark};
-  margin-vertical: ${({theme}) => theme.spacing.lg}px;
-`;
 
 const StyledFixedContainer = styled.View`
   width: 100%;
@@ -99,11 +93,10 @@ const Details = ({route}: DetailsProps) => {
             onPress={toggleFavorite}
           />
         </StyledRow>
-        <StyledImage
+        <Image
           source={{uri: image}}
           onError={() => console.log('Error loading image')}
         />
-
         <Text variant="body">{content}</Text>
       </Animated.ScrollView>
       <Animated.View

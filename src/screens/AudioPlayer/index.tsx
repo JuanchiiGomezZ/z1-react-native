@@ -13,20 +13,14 @@ import useNavigation from '@/hooks/useNavigation';
 import {useTheme} from 'styled-components/native';
 import Animated, {FadeInDown} from 'react-native-reanimated';
 import {ANIMATION_DURATION} from '@/assets/data';
+import Image from '@/components/Image';
+
 const StyledView = styled.View`
   flex: 1;
   padding-horizontal: ${({theme}) => theme.spacing.lg}px;
   padding-bottom: ${({theme}) => theme.spacing.xl}px;
   justify-content: center;
   align-items: center;
-`;
-
-const StyledImage = styled.Image`
-  width: 100%;
-  aspect-ratio: 1;
-  border-radius: ${({theme}) => theme.borderRadius.lg}px;
-  background-color: ${({theme}) => theme.colors.primary.dark};
-  margin-bottom: ${({theme}) => theme.spacing.sm}px;
 `;
 
 const CloseContainer = styled.View`
@@ -60,9 +54,10 @@ const AudioPlayer = ({route}: AudioPlayerRouteProps) => {
       </CloseContainer>
       <StyledView>
         <Animated.View entering={FadeInDown.delay(ANIMATION_DURATION.FAST)}>
-          <StyledImage
+          <Image
             source={{uri: image}}
             onError={() => console.log('Error loading image')}
+            marginVertical="sm"
           />
           <Text variant="title" size="xxl" align="center">
             {title}
