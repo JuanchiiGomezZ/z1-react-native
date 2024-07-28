@@ -10,14 +10,13 @@ type ButtonVariant =
   | 'primary-focus'
   | 'disabled';
 
-interface ButtonProps {
+type ButtonProps = {
   variant?: ButtonVariant;
   loading?: boolean;
   onPress?: () => void;
-  label: string;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
-}
+};
 
 const getButtonStyles = (theme: DefaultTheme, variant: ButtonVariant) => {
   switch (variant) {
@@ -82,7 +81,7 @@ const Button = ({
   label,
   leftIcon,
   rightIcon,
-}: ButtonProps & {variant?: ButtonVariant}) => {
+}: ButtonProps & {variant?: ButtonVariant; label: string}) => {
   return (
     <StyledButton variant={variant} onPress={onPress}>
       {loading ? (
