@@ -13,5 +13,5 @@ export type Category = {
 };
 
 export type GetLesons = {
-  lesons: Lesson[];
+  items: Lesson[];
 };

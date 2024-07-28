@@ -26,9 +26,9 @@ export const useItems = ({
   const [loadingMore, setLoadingMore] = useState(false);
 
   const filteredItems = useMemo(() => {
-    if (!data?.lesons) return [];
-    if (!filterCategoryId) return data.lesons;
-    return data.lesons.filter(item => item.category.id === filterCategoryId);
+    if (!data?.items) return [];
+    if (!filterCategoryId) return data.items;
+    return data.items.filter(item => item.category.id === filterCategoryId);
   }, [data, filterCategoryId]);
 
   const paginatedItems = useMemo(() => {
