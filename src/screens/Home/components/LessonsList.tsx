@@ -1,21 +1,21 @@
 import React, {useCallback} from 'react';
 import {Lesson} from '@/graphql/types';
-import ItemCard from './ItemCard';
+import LessonCard from '@/components/Card/LessonCard';
 import {useTheme} from 'styled-components/native';
-import ItemsListSkeleton from './ItemsListSkeleton';
+import LessonsSkeleton from './LessonsSkeleton';
 import useNavigation from '@/hooks/useNavigation';
 import Animated, {FadeInDown} from 'react-native-reanimated';
 import {ANIMATION_DURATION} from '@/constants';
 import {UseItemsResult} from '@/hooks/useItems';
 import useDebounce from '@/hooks/useDebounce';
 import {FlatList} from 'react-native';
-import Footer from '../Footer';
+import Footer from '@/components/Footer';
 
 type ItemsListProps = UseItemsResult & {
   flatListRef?: React.RefObject<FlatList>;
 };
 
-const ItemsList = ({
+const LessonsList = ({
   items,
   loading,
   hasMore,
@@ -41,7 +41,7 @@ const ItemsList = ({
 
   const renderItem = useCallback(
     ({item}: {item: Lesson}) => (
-      <ItemCard {...item} onPress={() => handleItemPress(item)} />
+      <LessonCard {...item} onPress={() => handleItemPress(item)} />
     ),
     [],
   );
@@ -71,7 +71,7 @@ const ItemsList = ({
       ref={flatListRef}
       ListFooterComponent={
         loading || loadingMore ? (
-          <ItemsListSkeleton numOfElements={6} />
+          <LessonsSkeleton numOfElements={6} />
         ) : (
           <Footer />
         )
@@ -79,4 +79,4 @@ const ItemsList = ({
     />
   );
 };
-export default ItemsList;
+export default LessonsList;

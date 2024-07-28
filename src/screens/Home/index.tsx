@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {useItems} from '@/hooks/useItems';
-import ItemsList from '@/components/Items/ItemsList';
+import LessonsList from './components/LessonsList';
 import Container from '@/components/Container';
 import Text from '@/components/Text';
 import Filters from '@/components/Filters';
@@ -45,7 +45,7 @@ const Home = () => {
         {items.error ? (
           <ErrorState />
         ) : (
-          <ItemsList {...items} flatListRef={flatlistRef} />
+          <LessonsList {...items} flatListRef={flatlistRef} />
         )}
       </StyledView>
     </Container>

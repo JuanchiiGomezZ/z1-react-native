@@ -29,9 +29,9 @@ const CardContent = styled.View`
   gap: ${({theme}) => theme.spacing.sm}px;
 `;
 
-const ItemCard = memo(
+const LessonCard = memo(
   ({image, title, category, author, onPress}: ItemCardProps) => {
-    const {colors, borderRadius} = useTheme();
+    const {colors, borderRadius} = useTheme(); // NO ME GUSTA
     return (
       <AnimatedPressable
         entering={FadeIn}
@@ -63,4 +63,4 @@ const ItemCard = memo(
   },
 );
 
-export default ItemCard;
+export default LessonCard;
