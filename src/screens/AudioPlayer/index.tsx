@@ -14,6 +14,7 @@ import {useTheme} from 'styled-components/native';
 import Animated, {FadeInDown} from 'react-native-reanimated';
 import {ANIMATION_DURATION} from '@/constants';
 import Image from '@/components/Image';
+import VolumeControl from './components/VolumeControl';
 
 const StyledView = styled.View`
   flex: 1;
@@ -51,7 +52,9 @@ const AudioPlayer = ({route}: AudioPlayerRouteProps) => {
           iconProps={{icon: faXmark, color: colors.text, size: 35}}
         />
       </CloseContainer>
+
       <StyledView>
+        <VolumeControl />
         <Animated.View entering={FadeInDown.delay(ANIMATION_DURATION.FAST)}>
           <Image
             source={{uri: image}}
