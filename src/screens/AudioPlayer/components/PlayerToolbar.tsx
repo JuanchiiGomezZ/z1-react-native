@@ -9,7 +9,7 @@ import {
 import {CircularIconButton} from '@/components/Button/CircularButton';
 import {useTheme} from 'styled-components/native';
 import Animated, {FadeInDown} from 'react-native-reanimated';
-import {ANIMATION_DURATION} from '@/assets/data';
+import {ANIMATION_DURATION} from '@/constants';
 
 const StyledRow = styled.View`
   flex-direction: row;

@@ -1,4 +1,4 @@
-import {ANIMATION_DURATION} from '@/assets/data';
+import {ANIMATION_DURATION} from '@/constants';
 import Text from '@/components/Text';
 import React, {useMemo} from 'react';
 import Animated, {FadeInDown} from 'react-native-reanimated';

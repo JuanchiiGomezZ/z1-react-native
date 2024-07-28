@@ -12,7 +12,7 @@ import {faXmark} from '@fortawesome/free-solid-svg-icons';
 import useNavigation from '@/hooks/useNavigation';
 import {useTheme} from 'styled-components/native';
 import Animated, {FadeInDown} from 'react-native-reanimated';
-import {ANIMATION_DURATION} from '@/assets/data';
+import {ANIMATION_DURATION} from '@/constants';
 import Image from '@/components/Image';
 
 const StyledView = styled.View`

@@ -5,7 +5,7 @@ import {useTheme} from 'styled-components/native';
 import ItemsListSkeleton from './ItemsListSkeleton';
 import useNavigation from '@/hooks/useNavigation';
 import Animated, {FadeInDown} from 'react-native-reanimated';
-import {ANIMATION_DURATION} from '@/assets/data';
+import {ANIMATION_DURATION} from '@/constants';
 import {UseItemsResult} from '@/hooks/useItems';
 import useDebounce from '@/hooks/useDebounce';
 import {FlatList} from 'react-native';

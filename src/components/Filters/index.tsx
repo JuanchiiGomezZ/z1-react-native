@@ -4,7 +4,7 @@ import Button from '@/components/Button';
 import {Category} from '@/graphql/types';
 import FiltersSkeleton from './FiltersSkeleton';
 import Animated, {FadeIn} from 'react-native-reanimated';
-import {ANIMATION_DURATION} from '@/assets/data';
+import {ANIMATION_DURATION} from '@/constants';
 
 type FiltersProps = {
   data: Category[];

@@ -17,7 +17,7 @@ import {faHeart, faPlay} from '@fortawesome/free-solid-svg-icons';
 import useDebounce from '@/hooks/useDebounce';
 import Button from '@/components/Button';
 import {getRandomNumber} from '@/utils';
-import {ANIMATION_DURATION} from '@/assets/data';
+import {ANIMATION_DURATION} from '@/constants';
 import Image from '@/components/Image';
 import Footer from '@/components/Footer';
 
