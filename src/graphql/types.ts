@@ -1,4 +1,4 @@
-export interface Item {
+export interface Lesson {
   id: string;
   title: string;
   image: string;
@@ -12,6 +12,6 @@ export type Category = {
   title: string;
 };
 
-export type GetItemsData = {
-  items: Item[];
+export type GetLesons = {
+  lesons: Lesson[];
 };

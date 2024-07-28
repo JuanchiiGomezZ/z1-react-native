@@ -8,7 +8,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import Container from '@/components/Container';
 import Text from '@/components/Text';
-import {Item} from '@/graphql/types';
+import {Lesson} from '@/graphql/types';
 import AnimatedHeader from '@/components/AnimatedHeader';
 import styled, {useTheme} from 'styled-components/native';
 import useNavigation from '@/hooks/useNavigation';
@@ -21,7 +21,7 @@ import {ANIMATION_DURATION} from '@/constants';
 import Image from '@/components/Image';
 import Footer from '@/components/Footer';
 
-type DetailsScreenRouteProp = RouteProp<{Details: Item}, 'Details'>;
+type DetailsScreenRouteProp = RouteProp<{Details: Lesson}, 'Details'>;
 
 type DetailsProps = {
   route: DetailsScreenRouteProp;

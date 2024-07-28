@@ -1,10 +1,10 @@
 import {useState, useMemo} from 'react';
 import {useQuery} from '@apollo/client';
 import {GET_ITEMS} from '@/graphql/queries';
-import {GetItemsData, Item} from '@/graphql/types';
+import {GetLesons, Lesson} from '@/graphql/types';
 
 export type UseItemsResult = {
-  items: Item[];
+  items: Lesson[];
   loading: boolean;
   error: Error | undefined;
   loadMore: () => void;
@@ -21,14 +21,14 @@ export const useItems = ({
   filterCategoryId,
   itemsPerPage = 10,
 }: useItemsProps): UseItemsResult => {
-  const {loading, error, data} = useQuery<GetItemsData>(GET_ITEMS);
+  const {loading, error, data} = useQuery<GetLesons>(GET_ITEMS);
   const [page, setPage] = useState(1);
   const [loadingMore, setLoadingMore] = useState(false);
 
   const filteredItems = useMemo(() => {
-    if (!data?.items) return [];
-    if (!filterCategoryId) return data.items;
-    return data.items.filter(item => item.category.id === filterCategoryId);
+    if (!data?.lesons) return [];
+    if (!filterCategoryId) return data.lesons;
+    return data.lesons.filter(item => item.category.id === filterCategoryId);
   }, [data, filterCategoryId]);
 
   const paginatedItems = useMemo(() => {

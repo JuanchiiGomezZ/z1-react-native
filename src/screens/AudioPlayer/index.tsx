@@ -6,7 +6,7 @@ import Text from '@/components/Text';
 import ProgressBar from './components/ProgressBar';
 import PlayerToolbar from './components/PlayerToolbar';
 import useAudioPlayer from '@/hooks/useTrackPlayer';
-import {Item} from '@/graphql/types';
+import {Lesson} from '@/graphql/types';
 import {CircularIconButton} from '@/components/Button/CircularButton';
 import {faXmark} from '@fortawesome/free-solid-svg-icons';
 import useNavigation from '@/hooks/useNavigation';
@@ -29,7 +29,7 @@ const CloseContainer = styled.View`
   left: ${({theme}) => theme.spacing.lg}px;
 `;
 
-export type AudioPlayerProps = Partial<Item> & {
+export type AudioPlayerProps = Partial<Lesson> & {
   audioUrl: string;
 };
 

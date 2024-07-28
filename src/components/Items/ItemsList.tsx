@@ -1,5 +1,5 @@
 import React, {useCallback} from 'react';
-import {Item} from '@/graphql/types';
+import {Lesson} from '@/graphql/types';
 import ItemCard from './ItemCard';
 import {useTheme} from 'styled-components/native';
 import ItemsListSkeleton from './ItemsListSkeleton';
@@ -33,14 +33,14 @@ const ItemsList = ({
   }, 500);
 
   const handleItemPress = useCallback(
-    (item: Item) => {
+    (item: Lesson) => {
       navigation.navigate('Details', item);
     },
     [navigation],
   );
 
   const renderItem = useCallback(
-    ({item}: {item: Item}) => (
+    ({item}: {item: Lesson}) => (
       <ItemCard {...item} onPress={() => handleItemPress(item)} />
     ),
     [],
@@ -49,7 +49,7 @@ const ItemsList = ({
   return (
     <Animated.FlatList
       data={items}
-      keyExtractor={(item: Item) => item.id}
+      keyExtractor={(item: Lesson) => item.id}
       renderItem={renderItem}
       numColumns={2}
       contentContainerStyle={{

@@ -1,11 +1,11 @@
 import React, {memo} from 'react';
 import styled, {useTheme} from 'styled-components/native';
 import Text from '@/components/Text';
-import {Item} from '@/graphql/types';
+import {Lesson} from '@/graphql/types';
 import {Pressable} from 'react-native';
 import Animated, {FadeIn, FadeOut} from 'react-native-reanimated';
 
-type ItemCardProps = Item & {
+type ItemCardProps = Lesson & {
   onPress?: () => void;
 };
 
