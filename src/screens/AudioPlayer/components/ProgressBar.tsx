@@ -12,6 +12,12 @@ const formatTime = (seconds: number): string => {
   return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
 };
 
+const Container = styled(Animated.View)`
+  width: 100%;
+  align-items: center;
+  margin-top: ${({theme}) => theme.spacing.lg}px;
+`;
+
 const ProgressContainer = styled.View`
   height: 10px;
   width: 100%;
@@ -50,15 +56,13 @@ const ProgressBar = ({duration, position}: ProgressBarProps) => {
   }, [duration, position]);
 
   return (
-    <Animated.View
-      style={{width: '100%', alignItems: 'flex-end', marginTop: spacing.lg}}
-      entering={FadeInDown.delay(ANIMATION_DURATION.MEDIUM)}>
+    <Container entering={FadeInDown.delay(ANIMATION_DURATION.MEDIUM)}>
       <ProgressContainer>
         <StyledProgressBar percentage={(position / duration) * 100} />
         <ProgressCircle />
       </ProgressContainer>
       <Text variant="bodyLarge">{remainingTime}</Text>
-    </Animated.View>
+    </Container>
   );
 };
 

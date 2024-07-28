@@ -55,7 +55,7 @@ const AudioPlayer = ({route}: AudioPlayerRouteProps) => {
 
       <StyledView>
         <VolumeControl />
-        <Animated.View entering={FadeInDown.delay(ANIMATION_DURATION.FAST)}>
+        <Animated.View entering={FadeInDown.delay(ANIMATION_DURATION.FAST + 100)}>
           <Image
             source={{uri: image}}
             onError={() => console.log('Error loading image')}

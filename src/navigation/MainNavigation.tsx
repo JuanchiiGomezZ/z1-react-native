@@ -17,6 +17,7 @@ const MainNavigation = () => {
         screenOptions={{
           headerShown: false,
           animation: 'slide_from_right',
+          animationDuration: 300,
         }}>
         <Stack.Screen name="TabNavigation" component={TabNavigation} />
         <Stack.Screen name="Details" component={Details} />

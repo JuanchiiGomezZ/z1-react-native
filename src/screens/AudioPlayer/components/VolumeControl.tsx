@@ -59,7 +59,7 @@ const VolumeControl: React.FC = React.memo(() => {
 
   return (
     <StyledAnimatedView
-      entering={FadeInDown.delay(ANIMATION_DURATION.VERY_FAST + 150)}>
+      entering={FadeInDown.delay(ANIMATION_DURATION.FAST - 100)}>
       <CircularIconButton
         iconProps={{
           icon: isMuted ? faVolumeXmark : faVolumeHigh,
