@@ -1,5 +1,5 @@
 # Z1 Digital React Native Tech Test
-![Real photos taken from the app](./assets/images/screenshoot_1)
+![Real photos taken from the app](./assets/images/screenshoot_1.png)
 
 
 ## About The Project
