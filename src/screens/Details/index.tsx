@@ -33,7 +33,7 @@ const StyledRow = styled.View`
   justify-content: space-between;
 `;
 
-const StyledFixedContainer = styled.View`
+const StyledFixedContainer = styled(Animated.View)`
   width: 100%;
   background-color: ${({theme}) => theme.colors.primary.darker};
   padding: ${({theme}) => theme.spacing.lg}px;
@@ -43,6 +43,10 @@ const StyledFixedContainer = styled.View`
   right: 0;
   border-top-width: 0.5px;
   border-top-color: ${({theme}) => theme.colors.secondary};
+`;
+
+const StyledScrollView = styled(Animated.ScrollView)`
+  padding-horizontal: ${({theme}) => theme.spacing.lg}px;
 `;
 
 const Details = ({route}: DetailsProps) => {
@@ -70,15 +74,14 @@ const Details = ({route}: DetailsProps) => {
         scrollThreshold={130}
         onPressArrow={() => navigation.goBack()}
       />
-      <Animated.ScrollView
+      <StyledScrollView
         entering={FadeInDown.delay(ANIMATION_DURATION.VERY_FAST).duration(
           ANIMATION_DURATION.FAST,
         )}
         onScroll={scrollHandler}
         scrollEventThrottle={16}
         contentContainerStyle={{
-          paddingBottom: 100,
-          paddingHorizontal: spacing.lg,
+          paddingBottom: 70,
         }}>
         <Text variant="category" size="lg">
           {category.title}
@@ -99,29 +102,27 @@ const Details = ({route}: DetailsProps) => {
         />
         <Text variant="body">{content}</Text>
         <Footer />
-      </Animated.ScrollView>
-      <Animated.View
+      </StyledScrollView>
+      <StyledFixedContainer
         entering={FadeInDown.delay(ANIMATION_DURATION.MEDIUM).duration(
           ANIMATION_DURATION.FAST,
         )}>
-        <StyledFixedContainer>
-          <Button
-            variant="primary-focus"
-            label="Listen now"
-            rightIcon={<Icon icon={faPlay} size={20} color={colors.text} />}
-            onPress={() =>
-              navigation.navigate('AudioPlayer', {
-                title,
-                image,
-                audioUrl: `https://www.soundhelix.com/examples/mp3/SoundHelix-Song-${getRandomNumber(
-                  1,
-                  17,
-                )}.mp3`,
-              })
-            }
-          />
-        </StyledFixedContainer>
-      </Animated.View>
+        <Button
+          variant="primary-focus"
+          label="Listen now"
+          rightIcon={<Icon icon={faPlay} size={20} color={colors.text} />}
+          onPress={() =>
+            navigation.navigate('AudioPlayer', {
+              title,
+              image,
+              audioUrl: `https://www.soundhelix.com/examples/mp3/SoundHelix-Song-${getRandomNumber(
+                1,
+                17,
+              )}.mp3`,
+            })
+          }
+        />
+      </StyledFixedContainer>
     </Container>
   );
 };

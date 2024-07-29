@@ -1,5 +1,5 @@
 import React, {memo} from 'react';
-import styled, {useTheme} from 'styled-components/native';
+import styled from 'styled-components/native';
 import Text from '@/components/Text';
 import {Lesson} from '@/graphql/types';
 import {Pressable} from 'react-native';
@@ -11,8 +11,11 @@ type ItemCardProps = Lesson & {
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
-const CardContainer = styled.View`
-  width: 100%;
+const CardContainer = styled(AnimatedPressable)`
+  flex: 1;
+  background-color: ${({theme}) => theme.colors.primary.default};
+  border-radius: ${({theme}) => theme.borderRadius.md}px;
+  max-width: 50%;
 `;
 
 const CardImage = styled.Image`
@@ -31,34 +34,22 @@ const CardContent = styled.View`
 
 const LessonCard = memo(
   ({image, title, category, author, onPress}: ItemCardProps) => {
-    const {colors, borderRadius} = useTheme(); // NO ME GUSTA
     return (
-      <AnimatedPressable
-        entering={FadeIn}
-        exiting={FadeOut}
-        style={{
-          flex: 1,
-          backgroundColor: colors.primary.default,
-          borderRadius: borderRadius.md,
-          maxWidth: '50%',
-        }}
-        onPress={onPress}>
-        <CardContainer>
-          <CardImage
-            source={{
-              uri: image,
-            }}
-          />
-          <CardContent>
-            <Text variant="category">{category.title}</Text>
-            <Text variant="title" numberOfLines={2} ellipsizeMode="tail">
-              {title}
-            </Text>
-            <Text variant="bodySmall">{author}</Text>
-            <CardContent />
-          </CardContent>
-        </CardContainer>
-      </AnimatedPressable>
+      <CardContainer entering={FadeIn} exiting={FadeOut} onPress={onPress}>
+        <CardImage
+          source={{
+            uri: image,
+          }}
+        />
+        <CardContent>
+          <Text variant="category">{category.title}</Text>
+          <Text variant="title" numberOfLines={2} ellipsizeMode="tail">
+            {title}
+          </Text>
+          <Text variant="bodySmall">{author}</Text>
+          <CardContent />
+        </CardContent>
+      </CardContainer>
     );
   },
 );
