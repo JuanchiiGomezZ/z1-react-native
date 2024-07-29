@@ -65,6 +65,7 @@ Before you begin, ensure you have the following installed:
 ## Demo
 
 Insert gif or link to demo
+![Review](./assets/images/review.gif)
 
 ## Lessons Learned
 
@@ -73,7 +74,9 @@ Throughout this technical test, I had the opportunity to explore and learn sever
 ### Key Takeaways
 
 - **Styled Components**
-  I found this library interesting and flexible, as it can be used for both web and mobile development. However, I found it somewhat uncomfortable when creating reusable components and less intuitive compared to other libraries for style and theme management. Despite these challenges, it was a valuable learning experience.
+I found this library interesting and flexible, as it can be used for both web and mobile development. However, I found it somewhat uncomfortable when creating reusable components and less intuitive compared to other libraries for style and theme management. Despite these challenges, it was a valuable learning experience.
+Maybe my limited experience and not knowing how to use this library properly led me to think this way, or maybe I am doing something wrong, which is most likely. 
+
 
 - **GraphQL & Apollo Client**
   I found the combination of GraphQL and Apollo Client very intriguing. The ability to construct requests with only the necessary information was fantastic, and the data fetching process seemed very straightforward. The efficiency and flexibility of this approach impressed me, and I plan to continue exploring and learning more about these technologies.
