@@ -46,21 +46,24 @@ Before you begin, ensure you have the following installed:
 
 2. Go to the project directory
 
-```bash
-  cd z1-react-native
-```
+   ```bash
+   cd z1-react-native
+
+   ```
 
 3. Install dependencies
 
-```bash
-  yarn install
-```
+   ```bash
+     yarn install
+
+   ```
 
 4. Start the server
 
-```bash
-  yarn android
-```
+   ```bash
+     yarn android
+
+   ```
 
 ## Lessons Learned
 
