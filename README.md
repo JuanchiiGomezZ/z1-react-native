@@ -1,6 +1,6 @@
 # Z1 Digital React Native Tech Test
-![Real photos taken from the app](./assets/images/screenshoot_1.png)
 
+![Real photos taken from the app](./assets/images/screenshoot_1.png)
 
 ## About The Project
 
@@ -62,11 +62,6 @@ Before you begin, ensure you have the following installed:
   yarn android
 ```
 
-## Demo
-
-Insert gif or link to demo
-![Review](./assets/images/review.gif)
-
 ## Lessons Learned
 
 Throughout this technical test, I had the opportunity to explore and learn several new tools. Although some were optional, I decided to incorporate them to expand my knowledge and challenge myself. I enjoy facing new challenges and am always eager to learn whatever is necessary.
@@ -74,14 +69,21 @@ Throughout this technical test, I had the opportunity to explore and learn sever
 ### Key Takeaways
 
 - **Styled Components**
-I found this library interesting and flexible, as it can be used for both web and mobile development. However, I found it somewhat uncomfortable when creating reusable components and less intuitive compared to other libraries for style and theme management. Despite these challenges, it was a valuable learning experience.
-Maybe my limited experience and not knowing how to use this library properly led me to think this way, or maybe I am doing something wrong, which is most likely. 
-
+  I found this library interesting and flexible, as it can be used for both web and mobile development. However, I found it somewhat uncomfortable when creating reusable components and less intuitive compared to other libraries for style and theme management. Despite these challenges, it was a valuable learning experience.
+  Maybe my limited experience and not knowing how to use this library properly led me to think this way, or maybe I am doing something wrong, which is most likely.
 
 - **GraphQL & Apollo Client**
   I found the combination of GraphQL and Apollo Client very intriguing. The ability to construct requests with only the necessary information was fantastic, and the data fetching process seemed very straightforward. The efficiency and flexibility of this approach impressed me, and I plan to continue exploring and learning more about these technologies.
 
 These experiences have broadened my skill set and given me new perspectives on different approaches to React Native development. While some tools presented challenges, overcoming these obstacles has contributed to my growth as a developer.
+
+## Acknowledgements
+
+I would like to express my sincere gratitude to the entire team at Z1 Digital for giving me the opportunity to complete this technical test. It has been an extremely enriching experience, and I thoroughly enjoyed the process.
+
+I did my best and am very happy with the result. This test not only allowed me to demonstrate my current skills but also offered me the chance to learn and grow as a developer.
+
+Thank you again for this opportunity. I look forward to the possibility of collaborating with you in the future.
 
 ## Feedback
 
