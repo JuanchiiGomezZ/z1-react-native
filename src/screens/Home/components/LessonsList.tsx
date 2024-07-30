@@ -4,7 +4,7 @@ import LessonCard from '@/components/Card/LessonCard';
 import {useTheme} from 'styled-components/native';
 import LessonsSkeleton from './LessonsSkeleton';
 import useNavigation from '@/hooks/useNavigation';
-import Animated, {FadeInDown} from 'react-native-reanimated';
+import Animated, {FadeIn} from 'react-native-reanimated';
 import {ANIMATION_DURATION} from '@/constants';
 import {UseItemsResult} from '@/hooks/useItems';
 import useDebounce from '@/hooks/useDebounce';
@@ -63,7 +63,7 @@ const LessonsList = ({
       maxToRenderPerBatch={10}
       initialNumToRender={10}
       showsVerticalScrollIndicator={false}
-      entering={FadeInDown.delay(ANIMATION_DURATION.FAST).duration(
+      entering={FadeIn.delay(ANIMATION_DURATION.FAST).duration(
         ANIMATION_DURATION.FAST,
       )}
       onEndReached={handleEndReached}
