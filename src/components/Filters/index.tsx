@@ -9,14 +9,14 @@ import {ANIMATION_DURATION} from '@/constants';
 type FiltersProps = {
   data: Category[];
   activeFilter: string | null;
-  onFilterChange: (id: string) => void;
+  handleChangeFilter: (id: string) => void;
   isLoading?: boolean;
 };
 
 const Filters = ({
   data,
   activeFilter,
-  onFilterChange,
+  handleChangeFilter: onFilterChange,
   isLoading,
 }: FiltersProps) => {
   const {spacing} = useTheme();
