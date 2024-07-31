@@ -69,7 +69,7 @@ const AudioPlayer = ({route}: AudioPlayerRouteProps) => {
         <PlayerToolbar
           isPlaying={isPlaying}
           onTogglePlayback={togglePlayback}
-          onSeekForward={() => seekForward(10)}
+          onSeekForward={() => seekForward(60)}
           onSeekBackward={() => seekBackward(10)}
         />
       </StyledView>

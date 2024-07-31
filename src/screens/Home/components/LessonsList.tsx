@@ -61,7 +61,6 @@ const LessonsList = ({
         gap: spacing.md,
       }}
       maxToRenderPerBatch={10}
-      initialNumToRender={10}
       showsVerticalScrollIndicator={false}
       entering={FadeIn.delay(ANIMATION_DURATION.FAST).duration(
         ANIMATION_DURATION.FAST,

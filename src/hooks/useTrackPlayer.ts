@@ -63,7 +63,9 @@ const useAudioPlayer = ({audioUrl}: UseAudioPlayerProps): UseAudioPlayer => {
         } else {
           await TrackPlayer.play();
         }
-        setIsPlaying(!isPlaying);
+        console.log('isPlaying');
+
+        setIsPlaying(prev => !prev);
       }
     } catch (error) {
       console.error('Error toggling playback:', error);

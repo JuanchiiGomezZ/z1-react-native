@@ -15,20 +15,20 @@ const StyledView = styled.View`
 `;
 
 const Home = () => {
-  const [activeFilter, setActiveFilter] = useState<string>('');
-  const items = useItems({filterCategoryId: activeFilter, itemsPerPage: 10});
+  const [activeCategory, setActiveFilter] = useState<string>('');
+  const items = useItems({filterCategoryId: activeCategory, itemsPerPage: 10});
   const flatlistRef = useRef<FlatList>(null);
 
   const handleFilterChange = useCallback(
     (id: string) => {
       setActiveFilter(prev => (prev === id ? '' : id));
     },
-    [activeFilter],
+    [activeCategory],
   );
 
   useEffect(() => {
     flatlistRef.current?.scrollToOffset({offset: 0});
-  }, [activeFilter]);
+  }, [activeCategory]);
 
   return (
     <Container>
@@ -38,7 +38,7 @@ const Home = () => {
         </Text>
         <Filters
           data={FILTER_DATA}
-          activeFilter={activeFilter}
+          activeFilter={activeCategory}
           onFilterChange={handleFilterChange}
           isLoading={items.loading}
         />
