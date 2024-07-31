@@ -89,7 +89,7 @@ const Details = ({route}: DetailsProps) => {
           paddingBottom: 70,
         }}>
         <Text variant="category" size="lg">
-          {category.title}
+          {category?.title}
         </Text>
         <Text variant="header">{title}</Text>
         <StyledRow>

@@ -16,7 +16,7 @@ import {faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 import Text from '@/components/Text';
 
 type HeaderProps = {
-  title: string;
+  title?: string;
   scrollY: SharedValue<number>;
   scrollThreshold?: number;
   onPressArrow?: () => void;
