@@ -11,6 +11,21 @@ export const GET_ITEMS = gql`
         title
       }
       author
+    }
+  }
+`;
+
+export const GET_ITEMS_DETAILS = gql`
+  query GetItems {
+    items {
+      id
+      title
+      image
+      category {
+        id
+        title
+      }
+      author
       content
     }
   }

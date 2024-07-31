@@ -19,6 +19,7 @@ import Button from '@/components/Button';
 import {ANIMATION_DURATION} from '@/constants';
 import Image from '@/components/Image';
 import Footer from '@/components/Footer';
+import {useItemDetails} from '@/hooks/useItemDetails';
 
 type DetailsScreenRouteProp = RouteProp<{Details: Lesson}, 'Details'>;
 
@@ -49,7 +50,8 @@ const StyledScrollView = styled(Animated.ScrollView)`
 `;
 
 const Details = ({route}: DetailsProps) => {
-  const {title, category, author, image, content, id} = route.params;
+  const {item, error, loading} = useItemDetails(route.params.id);
+  const {title, image, author, content, category, id} = item || {};
   const navigation = useNavigation();
   const scrollY = useSharedValue(0);
   const {colors} = useTheme();
@@ -64,6 +66,10 @@ const Details = ({route}: DetailsProps) => {
   const toggleFavorite = useDebounce(() => {
     setIsFavorite(prev => !prev);
   }, 500);
+
+  if (loading) {
+    return <Text>Loading...</Text>;
+  }
 
   return (
     <Container>

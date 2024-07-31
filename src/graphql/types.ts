@@ -7,6 +7,10 @@ export interface Lesson {
   content: string;
 }
 
+export type LessonDetails = Lesson & {
+  content: string;
+};
+
 export type Category = {
   id: string;
   title: string;
@@ -14,4 +18,8 @@ export type Category = {
 
 export type GetLesons = {
   items: Lesson[];
+};
+
+export type GetLessonDetails = {
+  items: LessonDetails[];
 };
