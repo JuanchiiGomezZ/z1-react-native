@@ -1,3 +1,4 @@
+import {getRandomNumber} from '@/utils';
 import {useState, useEffect, useCallback} from 'react';
 import TrackPlayer, {
   Event,
@@ -13,11 +14,7 @@ type UseAudioPlayer = {
   progress: Progress;
 };
 
-type UseAudioPlayerProps = {
-  audioUrl: string;
-};
-
-const useAudioPlayer = ({audioUrl}: UseAudioPlayerProps): UseAudioPlayer => {
+const useAudioPlayer = (id: string | undefined): UseAudioPlayer => {
   const [isPlaying, setIsPlaying] = useState(false);
   const progress = useProgress();
 
@@ -25,8 +22,11 @@ const useAudioPlayer = ({audioUrl}: UseAudioPlayerProps): UseAudioPlayer => {
     const setupTrack = async () => {
       try {
         await TrackPlayer.add({
-          id: 'trackId',
-          url: audioUrl,
+          id,
+          url: `https://www.soundhelix.com/examples/mp3/SoundHelix-Song-${getRandomNumber(
+            1,
+            17,
+          )}.mp3`,
           title: 'Track Title',
           artist: 'Track Artist',
         });
@@ -49,7 +49,7 @@ const useAudioPlayer = ({audioUrl}: UseAudioPlayerProps): UseAudioPlayer => {
     return () => {
       TrackPlayer.reset();
     };
-  }, [audioUrl]);
+  }, []);
 
   const togglePlayback = useCallback(async () => {
     try {
@@ -63,12 +63,10 @@ const useAudioPlayer = ({audioUrl}: UseAudioPlayerProps): UseAudioPlayer => {
         } else {
           await TrackPlayer.play();
         }
-        console.log('isPlaying');
-
         setIsPlaying(prev => !prev);
       }
     } catch (error) {
-      console.error('Error toggling playback:', error);
+      console.error('Error toggling playback:', error); //TOAST ON ERRORS
     }
   }, [isPlaying]);
 

@@ -30,18 +30,16 @@ const CloseContainer = styled.View`
   left: ${({theme}) => theme.spacing.lg}px;
 `;
 
-export type AudioPlayerProps = Partial<Lesson> & {
-  audioUrl: string;
-};
+export type AudioPlayerProps = Partial<Lesson>;
 
 type AudioPlayerRouteProps = {
   route: RouteProp<{AudioPlayer: AudioPlayerProps}, 'AudioPlayer'>;
 };
 
 const AudioPlayer = ({route}: AudioPlayerRouteProps) => {
-  const {title, audioUrl, image} = route.params;
+  const {title, image, id} = route.params;
   const {isPlaying, togglePlayback, seekForward, seekBackward, progress} =
-    useAudioPlayer({audioUrl});
+    useAudioPlayer(id);
   const navigation = useNavigation();
   const {colors} = useTheme();
   return (
@@ -55,7 +53,8 @@ const AudioPlayer = ({route}: AudioPlayerRouteProps) => {
 
       <StyledView>
         <VolumeControl />
-        <Animated.View entering={FadeInDown.delay(ANIMATION_DURATION.FAST + 100)}>
+        <Animated.View
+          entering={FadeInDown.delay(ANIMATION_DURATION.FAST + 100)}>
           <Image
             source={{uri: image}}
             onError={() => console.log('Error loading image')}
@@ -69,8 +68,8 @@ const AudioPlayer = ({route}: AudioPlayerRouteProps) => {
         <PlayerToolbar
           isPlaying={isPlaying}
           onTogglePlayback={togglePlayback}
-          onSeekForward={() => seekForward(60)}
-          onSeekBackward={() => seekBackward(10)}
+          onSeekForward={() => seekForward(20)}
+          onSeekBackward={() => seekBackward(20)}
         />
       </StyledView>
     </Container>

@@ -16,7 +16,6 @@ import {Icon, PressableIcon} from '@/components/Icon';
 import {faHeart, faPlay} from '@fortawesome/free-solid-svg-icons';
 import useDebounce from '@/hooks/useDebounce';
 import Button from '@/components/Button';
-import {getRandomNumber} from '@/utils';
 import {ANIMATION_DURATION} from '@/constants';
 import Image from '@/components/Image';
 import Footer from '@/components/Footer';
@@ -50,10 +49,10 @@ const StyledScrollView = styled(Animated.ScrollView)`
 `;
 
 const Details = ({route}: DetailsProps) => {
-  const {title, category, author, image, content} = route.params;
+  const {title, category, author, image, content, id} = route.params;
   const navigation = useNavigation();
   const scrollY = useSharedValue(0);
-  const {spacing, colors} = useTheme();
+  const {colors} = useTheme();
   const [isFavorite, setIsFavorite] = useState(false);
 
   const scrollHandler = useAnimatedScrollHandler({
@@ -115,10 +114,7 @@ const Details = ({route}: DetailsProps) => {
             navigation.navigate('AudioPlayer', {
               title,
               image,
-              audioUrl: `https://www.soundhelix.com/examples/mp3/SoundHelix-Song-${getRandomNumber(
-                1,
-                17,
-              )}.mp3`,
+              id,
             })
           }
         />
