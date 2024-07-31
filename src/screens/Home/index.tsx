@@ -8,6 +8,7 @@ import {FILTER_DATA} from '@/assets/data';
 import styled from 'styled-components/native';
 import {FlatList} from 'react-native';
 import ErrorState from '@/components/ErrorState';
+import useFilters from '@/hooks/useFilters';
 
 const StyledView = styled.View`
   flex: 1;
@@ -15,20 +16,15 @@ const StyledView = styled.View`
 `;
 
 const Home = () => {
-  const [activeCategory, setActiveFilter] = useState<string>('');
-  const items = useItems({filterCategoryId: activeCategory, itemsPerPage: 10});
   const flatlistRef = useRef<FlatList>(null);
-
-  const handleFilterChange = useCallback(
-    (id: string) => {
-      setActiveFilter(prev => (prev === id ? '' : id));
-    },
-    [activeCategory],
-  );
-
-  useEffect(() => {
+  const onFilterChange = useCallback(() => {
     flatlistRef.current?.scrollToOffset({offset: 0});
-  }, [activeCategory]);
+  }, []);
+  const filters = useFilters({onFilterChange});
+  const items = useItems({
+    filterCategoryId: filters.activeFilter,
+    itemsPerPage: 10,
+  });
 
   return (
     <Container>
@@ -36,12 +32,7 @@ const Home = () => {
         <Text variant="header" align="center">
           Learn
         </Text>
-        <Filters
-          data={FILTER_DATA}
-          activeFilter={activeCategory}
-          onFilterChange={handleFilterChange}
-          isLoading={items.loading}
-        />
+        <Filters {...filters} isLoading={items.loading} />
         {items.error ? (
           <ErrorState />
         ) : (
