@@ -33,11 +33,12 @@ const useAudioPlayer = (id: string | undefined): UseAudioPlayer => {
           artist: 'Track Artist',
         });
 
-        // Configurar el evento para cuando termine la pista
+
         await TrackPlayer.addEventListener(
           Event.PlaybackQueueEnded,
           async () => {
             await TrackPlayer.seekTo(0);
+            await TrackPlayer.pause();
             setIsPlaying(false);
           },
         );
