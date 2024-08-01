@@ -1,4 +1,3 @@
-// Header.tsx
 import React from 'react';
 import {StyleSheet, ViewStyle} from 'react-native';
 import Animated, {

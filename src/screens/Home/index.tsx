@@ -1,10 +1,9 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useRef} from 'react';
 import {useItems} from '@/hooks/useItems';
 import LessonsList from './components/LessonsList';
 import Container from '@/components/Container';
 import Text from '@/components/Text';
 import Filters from '@/components/Filters';
-import {FILTER_DATA} from '@/assets/data';
 import styled from 'styled-components/native';
 import {FlatList} from 'react-native';
 import ErrorState from '@/components/ErrorState';

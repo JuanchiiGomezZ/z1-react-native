@@ -4,7 +4,6 @@ import {DefaultTheme} from 'styled-components/native';
 import Skeleton from '@/components/Skeleton';
 import {SKELETON_HEIGHTS} from '@/constants';
 
-// Tipos
 type SpacingKey = keyof DefaultTheme['spacing'];
 
 interface BoxProps {

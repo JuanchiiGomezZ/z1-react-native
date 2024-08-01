@@ -1,4 +1,3 @@
-// Details.tsx
 import React, {useState} from 'react';
 import {RouteProp} from '@react-navigation/native';
 import Animated, {

@@ -73,7 +73,6 @@ const ButtonText = styled(Text)<{variant: ButtonVariant}>`
   `}
 `;
 
-// Componente
 const Button = ({
   variant = 'primary',
   loading = false,
