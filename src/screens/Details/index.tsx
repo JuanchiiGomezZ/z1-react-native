@@ -20,6 +20,7 @@ import {ANIMATION_DURATION} from '@/constants';
 import Image from '@/components/Image';
 import Footer from '@/components/Footer';
 import {useItemDetails} from '@/hooks/useItemDetails';
+import DetailsSkeleton from './components/DetailsSkeleton';
 
 type DetailsScreenRouteProp = RouteProp<{Details: Lesson}, 'Details'>;
 
@@ -67,10 +68,6 @@ const Details = ({route}: DetailsProps) => {
     setIsFavorite(prev => !prev);
   }, 500);
 
-  if (loading) {
-    return <Text>Loading...</Text>;
-  }
-
   return (
     <Container>
       <AnimatedHeader
@@ -79,52 +76,58 @@ const Details = ({route}: DetailsProps) => {
         scrollThreshold={130}
         onPressArrow={() => navigation.goBack()}
       />
-      <StyledScrollView
-        entering={FadeInDown.delay(ANIMATION_DURATION.VERY_FAST).duration(
-          ANIMATION_DURATION.FAST,
-        )}
-        onScroll={scrollHandler}
-        scrollEventThrottle={16}
-        contentContainerStyle={{
-          paddingBottom: 70,
-        }}>
-        <Text variant="category" size="lg">
-          {category?.title}
-        </Text>
-        <Text variant="header">{title}</Text>
-        <StyledRow>
-          <Text variant="body">{author}</Text>
-          <PressableIcon
-            icon={faHeart}
-            size={30}
-            color={isFavorite ? colors.red : colors.primary.dark}
-            onPress={toggleFavorite}
-          />
-        </StyledRow>
-        <Image
-          source={{uri: image}}
-          onError={() => console.log('Error loading image')}
-        />
-        <Text variant="body">{content}</Text>
-        <Footer />
-      </StyledScrollView>
-      <StyledFixedContainer
-        entering={FadeInDown.delay(ANIMATION_DURATION.MEDIUM).duration(
-          ANIMATION_DURATION.FAST,
-        )}>
-        <Button
-          variant="primary-focus"
-          label="Listen now"
-          rightIcon={<Icon icon={faPlay} size={20} color={colors.text} />}
-          onPress={() =>
-            navigation.navigate('AudioPlayer', {
-              title,
-              image,
-              id,
-            })
-          }
-        />
-      </StyledFixedContainer>
+      {loading ? (
+        <DetailsSkeleton />
+      ) : (
+        <>
+          <StyledScrollView
+            entering={FadeInDown.delay(ANIMATION_DURATION.VERY_FAST).duration(
+              ANIMATION_DURATION.FAST,
+            )}
+            onScroll={scrollHandler}
+            scrollEventThrottle={16}
+            contentContainerStyle={{
+              paddingBottom: 70,
+            }}>
+            <Text variant="category" size="lg">
+              {category?.title}
+            </Text>
+            <Text variant="header">{title}</Text>
+            <StyledRow>
+              <Text variant="body">{author}</Text>
+              <PressableIcon
+                icon={faHeart}
+                size={30}
+                color={isFavorite ? colors.red : colors.primary.dark}
+                onPress={toggleFavorite}
+              />
+            </StyledRow>
+            <Image
+              source={{uri: image}}
+              onError={() => console.log('Error loading image')}
+            />
+            <Text variant="body">{content}</Text>
+            <Footer />
+          </StyledScrollView>
+          <StyledFixedContainer
+            entering={FadeInDown.delay(ANIMATION_DURATION.MEDIUM).duration(
+              ANIMATION_DURATION.FAST,
+            )}>
+            <Button
+              variant="primary-focus"
+              label="Listen now"
+              rightIcon={<Icon icon={faPlay} size={20} color={colors.text} />}
+              onPress={() =>
+                navigation.navigate('AudioPlayer', {
+                  title,
+                  image,
+                  id,
+                })
+              }
+            />
+          </StyledFixedContainer>
+        </>
+      )}
     </Container>
   );
 };
