@@ -22,6 +22,7 @@ import Image from '@/components/Image';
 import Footer from '@/components/Footer';
 import {useItemDetails} from '@/hooks/useItemDetails';
 import DetailsSkeleton from './components/DetailsSkeleton';
+import ErrorState from '@/components/ErrorState';
 
 type DetailsScreenRouteProp = RouteProp<{Details: Lesson}, 'Details'>;
 
@@ -116,6 +117,14 @@ const Details = ({route}: DetailsProps) => {
       </StyledFixedContainer>
     </>
   );
+
+  if (error) {
+    return (
+      <Container>
+        <ErrorState />
+      </Container>
+    );
+  }
 
   return (
     <Container>
