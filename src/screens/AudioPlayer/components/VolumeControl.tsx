@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useMemo, useCallback} from 'react';
+import React, {useState, useEffect, useMemo, useCallback, memo} from 'react';
 import Slider from '@react-native-community/slider';
 import styled from 'styled-components/native';
 import {faVolumeHigh, faVolumeXmark} from '@fortawesome/free-solid-svg-icons';
@@ -8,6 +8,7 @@ import Animated, {FadeInDown} from 'react-native-reanimated';
 import {ANIMATION_DURATION} from '@/constants';
 import {CircularIconButton} from '@/components/Button/CircularButton';
 import Text from '@/components/Text';
+import {useNotifications} from 'react-native-notificated';
 
 const StyledSlider = styled(Slider)`
   flex: 1;
@@ -20,7 +21,8 @@ const StyledAnimatedView = styled(Animated.View)`
   gap: ${({theme}) => theme.spacing.xs}px;
 `;
 
-const VolumeControl: React.FC = React.memo(() => {
+const VolumeControl = memo(() => {
+  const {notify} = useNotifications();
   const [volume, setVolume] = useState<number>(1);
   const {colors} = useTheme();
   const isMuted = useMemo(() => volume === 0, [volume]);
@@ -31,7 +33,12 @@ const VolumeControl: React.FC = React.memo(() => {
         const currentVolume = await TrackPlayer.getVolume();
         setVolume(currentVolume);
       } catch (error) {
-        console.error('Error getting initial volume:', error);
+        notify('error', {
+          params: {
+            title: 'Error',
+            description: 'Error getting the volume',
+          },
+        });
       }
     };
 
@@ -43,7 +50,12 @@ const VolumeControl: React.FC = React.memo(() => {
       setVolume(value);
       await TrackPlayer.setVolume(value);
     } catch (error) {
-      console.error('Error setting volume:', error);
+      notify('error', {
+        params: {
+          title: 'Error',
+          description: 'Error changing the volume',
+        },
+      });
     }
   }, []);
 
@@ -53,7 +65,12 @@ const VolumeControl: React.FC = React.memo(() => {
       setVolume(newVolume);
       await TrackPlayer.setVolume(newVolume);
     } catch (error) {
-      console.error('Error muting/unmuting:', error);
+      notify('error', {
+        params: {
+          title: 'Error',
+          description: 'Error muting the volume',
+        },
+      });
     }
   }, [isMuted]);
 

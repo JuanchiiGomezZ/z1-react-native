@@ -1,5 +1,6 @@
 import {getRandomNumber} from '@/utils';
 import {useState, useEffect, useCallback} from 'react';
+import {useNotifications} from 'react-native-notificated';
 import TrackPlayer, {
   Event,
   Progress,
@@ -15,6 +16,7 @@ type UseAudioPlayer = {
 };
 
 const useAudioPlayer = (id: string | undefined): UseAudioPlayer => {
+  const {notify} = useNotifications();
   const [isPlaying, setIsPlaying] = useState(false);
   const progress = useProgress();
 
@@ -40,7 +42,12 @@ const useAudioPlayer = (id: string | undefined): UseAudioPlayer => {
           },
         );
       } catch (error) {
-        console.error('Error setting up track:', error);
+        notify('error', {
+          params: {
+            title: 'Error',
+            description: 'Error setting up the track',
+          },
+        });
       }
     };
 
@@ -66,7 +73,12 @@ const useAudioPlayer = (id: string | undefined): UseAudioPlayer => {
         setIsPlaying(prev => !prev);
       }
     } catch (error) {
-      console.error('Error toggling playback:', error); //TOAST ON ERRORS
+      notify('error', {
+        params: {
+          title: 'Error',
+          description: 'Error toggling the playback',
+        },
+      });
     }
   }, [isPlaying]);
 
@@ -75,7 +87,12 @@ const useAudioPlayer = (id: string | undefined): UseAudioPlayer => {
       const {position} = await TrackPlayer.getProgress();
       await TrackPlayer.seekTo(position + seconds);
     } catch (error) {
-      console.error('Error seeking:', error);
+      notify('error', {
+        params: {
+          title: 'Error',
+          description: 'Error seeking the track',
+        },
+      });
     }
   }, []);
 

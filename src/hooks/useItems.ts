@@ -1,7 +1,8 @@
-import {useState, useMemo} from 'react';
+import {useState, useMemo, useEffect} from 'react';
 import {useQuery} from '@apollo/client';
 import {GET_ITEMS} from '@/graphql/queries';
 import {GetLesons, Lesson} from '@/graphql/types';
+import {useNotifications} from 'react-native-notificated';
 
 export type UseItemsResult = {
   items: Lesson[];
@@ -21,6 +22,7 @@ export const useItems = ({
   filterCategoryId,
   itemsPerPage = 10,
 }: useItemsProps): UseItemsResult => {
+  const {notify} = useNotifications();
   const {loading, error, data} = useQuery<GetLesons>(GET_ITEMS);
   const [page, setPage] = useState(1);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -44,6 +46,17 @@ export const useItems = ({
   };
 
   const hasMore = paginatedItems.length < filteredItems.length;
+
+  useEffect(() => {
+    if (error) {
+      notify('error', {
+        params: {
+          title: 'Error',
+          description: 'Error loading items',
+        },
+      });
+    }
+  }, [error]);
 
   return {
     items: paginatedItems,
