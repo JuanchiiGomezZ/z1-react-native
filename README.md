@@ -14,7 +14,6 @@ This project is a technical test for Z1 Digital, implementing a React Native app
 - GraphQL
 - Apollo Client
 - React Navigation
-- React Native Track Player
 
 ### Related Considerations
 
@@ -64,6 +63,8 @@ Before you begin, ensure you have the following installed:
      yarn android
 
    ```
+
+   _ONLY TESTED ON ANDROID_
 
 ## Lessons Learned
 
