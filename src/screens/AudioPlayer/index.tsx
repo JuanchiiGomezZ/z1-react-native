@@ -27,7 +27,7 @@ const StyledView = styled.View`
 const CloseContainer = styled.View`
   position: absolute;
   top: ${({theme}) => theme.spacing.md}px;
-  left: ${({theme}) => theme.spacing.lg}px;
+  right: ${({theme}) => theme.spacing.lg}px;
 `;
 
 export type AudioPlayerProps = Partial<Lesson>;
