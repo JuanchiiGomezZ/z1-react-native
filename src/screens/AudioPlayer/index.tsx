@@ -47,7 +47,7 @@ const AudioPlayer = ({route}: AudioPlayerRouteProps) => {
       <CloseContainer>
         <CircularIconButton
           onPress={() => navigation.goBack()}
-          iconProps={{icon: faXmark, color: colors.text, size: 35}}
+          iconProps={{icon: faXmark, color: colors.text}}
         />
       </CloseContainer>
 
