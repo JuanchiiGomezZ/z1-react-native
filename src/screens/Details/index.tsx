@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {RouteProp} from '@react-navigation/native';
 import Animated, {
   useSharedValue,
@@ -65,9 +65,9 @@ const Details = ({route}: DetailsProps) => {
     },
   });
 
-  const toggleFavorite = useDebounce(() => {
+  const toggleFavorite = useCallback(() => {
     setIsFavorite(prev => !prev);
-  }, 500);
+  }, []);
 
   const handleListenNow = () => {
     navigation.navigate('AudioPlayer', {
@@ -77,8 +77,42 @@ const Details = ({route}: DetailsProps) => {
     });
   };
 
-  const RenderContent = () => (
-    <>
+  if (error) {
+    return (
+      <Container>
+        <AnimatedHeader
+          title={title}
+          scrollY={scrollY}
+          scrollThreshold={130}
+          onPressArrow={() => navigation.goBack()}
+        />
+        <ErrorState />
+      </Container>
+    );
+  }
+
+  if (loading) {
+    return (
+      <Container>
+        <AnimatedHeader
+          title={title}
+          scrollY={scrollY}
+          scrollThreshold={130}
+          onPressArrow={() => navigation.goBack()}
+        />
+        <DetailsSkeleton />
+      </Container>
+    );
+  }
+
+  return (
+    <Container>
+      <AnimatedHeader
+        title={title}
+        scrollY={scrollY}
+        scrollThreshold={130}
+        onPressArrow={() => navigation.goBack()}
+      />
       <StyledScrollView
         entering={FadeIn.delay(ANIMATION_DURATION.VERY_FAST).duration(
           ANIMATION_DURATION.FAST,
@@ -114,26 +148,6 @@ const Details = ({route}: DetailsProps) => {
           onPress={handleListenNow}
         />
       </StyledFixedContainer>
-    </>
-  );
-
-  if (error) {
-    return (
-      <Container>
-        <ErrorState />
-      </Container>
-    );
-  }
-
-  return (
-    <Container>
-      <AnimatedHeader
-        title={title}
-        scrollY={scrollY}
-        scrollThreshold={130}
-        onPressArrow={() => navigation.goBack()}
-      />
-      {loading ? <DetailsSkeleton /> : <RenderContent />}
     </Container>
   );
 };
