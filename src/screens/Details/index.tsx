@@ -23,7 +23,14 @@ import {useItemDetails} from '@/hooks/useItemDetails';
 import DetailsSkeleton from './components/DetailsSkeleton';
 import ErrorState from '@/components/ErrorState';
 
-type DetailsScreenRouteProp = RouteProp<{Details: {id: string}}, 'Details'>;
+export type DetailsScreenProps = {
+  id: string;
+};
+
+type DetailsScreenRouteProp = RouteProp<
+  {Details: DetailsScreenProps},
+  'Details'
+>;
 
 type DetailsProps = {
   route: DetailsScreenRouteProp;

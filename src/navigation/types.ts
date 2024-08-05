@@ -1,4 +1,5 @@
 import {AudioPlayerProps} from '@/screens/AudioPlayer';
+import {DetailsScreenProps} from '@/screens/Details';
 
 export type TabNavigationScreens = {
   Home: undefined;
@@ -6,6 +7,6 @@ export type TabNavigationScreens = {
 
 export type MainNavigationScreens = {
   TabNavigation: undefined;
-  Details: {id: string};
+  Details: DetailsScreenProps;
   AudioPlayer: AudioPlayerProps;
 };
