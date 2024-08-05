@@ -4,24 +4,15 @@ import {client, ApolloProvider} from './src/apollo/client';
 import {ThemeProvider} from 'styled-components';
 import theme from './src/theme';
 import TrackPlayer from 'react-native-track-player';
-import {useNotifications} from 'react-native-notificated';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {NotificationsProvider} from '@/config/ToastProvider';
 
 const App = () => {
-  const {notify} = useNotifications();
   useEffect(() => {
     const setupPlayer = async () => {
       try {
         await TrackPlayer.setupPlayer();
-      } catch (error) {
-        notify('error', {
-          params: {
-            title: 'Error',
-            description: 'Error setting up the player',
-          },
-        });
-      }
+      } catch (error) {}
     };
     setupPlayer();
   }, []);
