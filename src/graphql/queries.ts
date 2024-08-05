@@ -15,7 +15,7 @@ export const GET_ITEMS = gql`
   }
 `;
 
-export const GET_ITEMS_DETAILS = gql`
+export const GET_ITEM_DETAILS = gql`
   query GetItems {
     items {
       id

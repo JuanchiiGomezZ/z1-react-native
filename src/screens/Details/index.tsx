@@ -65,9 +65,9 @@ const Details = ({route}: DetailsProps) => {
     },
   });
 
-  const toggleFavorite = useCallback(() => {
+  const toggleFavorite = useDebounce(() => {
     setIsFavorite(prev => !prev);
-  }, []);
+  }, 250);
 
   const handleListenNow = () => {
     navigation.navigate('AudioPlayer', {

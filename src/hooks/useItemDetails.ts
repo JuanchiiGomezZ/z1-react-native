@@ -1,5 +1,5 @@
 import {useQuery} from '@apollo/client';
-import {GET_ITEMS_DETAILS} from '@/graphql/queries';
+import {GET_ITEM_DETAILS} from '@/graphql/queries';
 import {GetLessonDetails, LessonDetails} from '@/graphql/types';
 import {useEffect, useMemo} from 'react';
 import {useNotifications} from 'react-native-notificated';
@@ -12,7 +12,7 @@ export type UseItemResult = {
 
 export const useItemDetails = (id: string): UseItemResult => {
   const {notify} = useNotifications();
-  const {loading, error, data} = useQuery<GetLessonDetails>(GET_ITEMS_DETAILS);
+  const {loading, error, data} = useQuery<GetLessonDetails>(GET_ITEM_DETAILS);
 
   const item = useMemo(() => {
     return data?.items.find(item => item.id === id);
