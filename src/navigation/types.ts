@@ -1,4 +1,3 @@
-import {Lesson} from '@/graphql/types';
 import {AudioPlayerProps} from '@/screens/AudioPlayer';
 
 export type TabNavigationScreens = {
@@ -7,6 +6,6 @@ export type TabNavigationScreens = {
 
 export type MainNavigationScreens = {
   TabNavigation: undefined;
-  Details: Lesson;
+  Details: {id: string};
   AudioPlayer: AudioPlayerProps;
 };

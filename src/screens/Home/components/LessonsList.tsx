@@ -34,7 +34,7 @@ const LessonsList = ({
 
   const handleItemPress = useCallback(
     (item: Lesson) => {
-      navigation.navigate('Details', item);
+      navigation.navigate('Details', {id: item.id});
     },
     [navigation],
   );
