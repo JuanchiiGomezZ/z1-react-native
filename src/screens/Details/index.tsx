@@ -77,20 +77,20 @@ const Details = ({route}: DetailsProps) => {
     });
   };
 
-  if (error) {
-    return (
-      <Container>
-        <AnimatedHeader />
-        <ErrorState />
-      </Container>
-    );
-  }
-
   if (loading) {
     return (
       <Container>
         <AnimatedHeader />
         <DetailsSkeleton />
+      </Container>
+    );
+  }
+
+  if (error) {
+    return (
+      <Container>
+        <AnimatedHeader />
+        <ErrorState />
       </Container>
     );
   }
