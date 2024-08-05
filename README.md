@@ -14,6 +14,7 @@ This project is a technical test for Z1 Digital, implementing a React Native app
 - GraphQL
 - Apollo Client
 - React Navigation
+- React Native Reanimated
 
 ### Related Considerations
 
