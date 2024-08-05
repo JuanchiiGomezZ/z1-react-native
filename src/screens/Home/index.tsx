@@ -19,7 +19,7 @@ const Home = () => {
   const onFilterChange = useCallback(() => {
     flatlistRef.current?.scrollToOffset({offset: 0});
   }, []);
-  const filters = useFilters({onFilterChange});
+  const filters = useFilters(onFilterChange);
   const items = useItems({
     filterCategoryId: filters.activeFilter,
     itemsPerPage: 10,

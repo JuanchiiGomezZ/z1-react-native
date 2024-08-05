@@ -7,25 +7,22 @@ type useFilterReturn = {
   activeFilter: string;
   handleChangeFilter: (id: string) => void;
 };
-
-type useFiltersProps = {
-  onFilterChange: () => void;
-};
-
-export default function useFilters({
-  onFilterChange,
-}: useFiltersProps): useFilterReturn {
+export default function useFilters(
+  onFilterChange?: () => void,
+): useFilterReturn {
   const [activeCategory, setActiveFilter] = useState<string>('');
 
   const handleChangeFilter = useCallback(
     (id: string) => {
-      setActiveFilter(prev => (prev === id ? '' : id));
+      setActiveFilter(prev => (prev === id ? '' : id)); // if the same category is clicked, unselect it
     },
     [activeCategory],
   );
 
   useEffect(() => {
-    onFilterChange();
+    if (onFilterChange) {
+      onFilterChange();
+    }
   }, [activeCategory]);
 
   return {
