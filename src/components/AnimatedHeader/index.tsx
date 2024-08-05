@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {StyleSheet, ViewStyle} from 'react-native';
 import Animated, {
   useAnimatedStyle,
@@ -13,10 +13,11 @@ import {useTheme} from 'styled-components/native';
 import {PressableIcon} from '@/components/Icon';
 import {faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 import Text from '@/components/Text';
+import useNavigation from '@/hooks/useNavigation';
 
 type HeaderProps = {
   title?: string;
-  scrollY: SharedValue<number>;
+  scrollY?: SharedValue<number>;
   scrollThreshold?: number;
   onPressArrow?: () => void;
 };
@@ -26,20 +27,21 @@ const HEADER_HEIGHT = 55;
 export const AnimatedHeader = ({
   title,
   scrollY,
-  scrollThreshold,
+  scrollThreshold = 100,
   onPressArrow,
 }: HeaderProps) => {
   const {colors, spacing} = useTheme();
-
+  const navigation = useNavigation();
   const animatedProgress = useDerivedValue(() => {
+    if (!scrollY?.value) return 0;
     return interpolate(
       scrollY.value,
-      [0, scrollThreshold || 100],
+      [0, scrollThreshold],
       [0, 1],
       Extrapolation.CLAMP,
     );
   });
-
+  console.log(animatedProgress);
   const animatedStyles = useAnimatedStyle(() => {
     const backgroundColor = interpolateColor(
       animatedProgress.value,
@@ -57,6 +59,10 @@ export const AnimatedHeader = ({
     return {opacity};
   });
 
+  const handleGoBack = useCallback(() => {
+    navigation.goBack();
+  }, [navigation]);
+
   return (
     <Animated.View
       style={[
@@ -66,9 +72,8 @@ export const AnimatedHeader = ({
       ]}>
       <PressableIcon
         icon={faArrowLeft}
-        size={25}
         color={colors.text}
-        onPress={onPressArrow}
+        onPress={handleGoBack || onPressArrow}
       />
       <Animated.View style={[styles.titleContainer, titleStyles]}>
         <Text numberOfLines={1} variant="bodyLarge">

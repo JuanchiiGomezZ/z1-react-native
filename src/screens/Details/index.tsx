@@ -80,12 +80,7 @@ const Details = ({route}: DetailsProps) => {
   if (error) {
     return (
       <Container>
-        <AnimatedHeader
-          title={title}
-          scrollY={scrollY}
-          scrollThreshold={130}
-          onPressArrow={() => navigation.goBack()}
-        />
+        <AnimatedHeader />
         <ErrorState />
       </Container>
     );
@@ -94,12 +89,7 @@ const Details = ({route}: DetailsProps) => {
   if (loading) {
     return (
       <Container>
-        <AnimatedHeader
-          title={title}
-          scrollY={scrollY}
-          scrollThreshold={130}
-          onPressArrow={() => navigation.goBack()}
-        />
+        <AnimatedHeader />
         <DetailsSkeleton />
       </Container>
     );
@@ -107,12 +97,7 @@ const Details = ({route}: DetailsProps) => {
 
   return (
     <Container>
-      <AnimatedHeader
-        title={title}
-        scrollY={scrollY}
-        scrollThreshold={130}
-        onPressArrow={() => navigation.goBack()}
-      />
+      <AnimatedHeader title={title} scrollY={scrollY} scrollThreshold={130} />
       <StyledScrollView
         entering={FadeIn.delay(ANIMATION_DURATION.VERY_FAST).duration(
           ANIMATION_DURATION.FAST,
