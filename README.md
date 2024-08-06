@@ -40,7 +40,7 @@ Before you begin, ensure you have the following installed:
 1. Clone the project
 
    ```bash
-   git clone https://github.com/your_username/z1-react-native.git
+   git clone https://github.com/JuanchiiGomezZ/z1-react-native
 
    ```
 
